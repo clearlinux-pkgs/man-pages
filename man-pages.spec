@@ -4,7 +4,7 @@
 #
 Name     : man-pages
 Version  : 4.02
-Release  : 21
+Release  : 22
 URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.02.tar.xz
 Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.02.tar.xz
 Summary  : No detailed summary available
