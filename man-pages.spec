@@ -4,7 +4,7 @@
 #
 Name     : man-pages
 Version  : 4.02
-Release  : 22
+Release  : 23
 URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.02.tar.xz
 Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.02.tar.xz
 Summary  : No detailed summary available
@@ -71,3 +71,5 @@ rm -rf %{buildroot}
 %exclude /usr/share/man/man2/lsetxattr.2
 %exclude /usr/share/man/man2/removexattr.2
 %exclude /usr/share/man/man2/setxattr.2
+%exclude /usr/share/man/man3/getspnam.3
+%exclude /usr/share/man/man5/passwd.5
