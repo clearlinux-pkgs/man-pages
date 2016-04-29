@@ -4,7 +4,7 @@
 #
 Name     : man-pages
 Version  : 4.05
-Release  : 25
+Release  : 26
 URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.05.tar.xz
 Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.05.tar.xz
 Summary  : No detailed summary available
