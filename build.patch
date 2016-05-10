@@ -4,7 +4,7 @@
  GZIP=gzip -9
  BZIP2=bzip2 -9
  
--all: screen remove install
+-all: remove install
 +all:
  
  allgz: gz all
