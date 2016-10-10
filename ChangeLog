@@ -1,6 +1,6 @@
-==================== Changes in man-pages-4.07 ====================
+==================== Changes in man-pages-4.08 ====================
 
-Released: 2016-07-17, Ulm
+Released: 2016-10-08, Munich
 
 
 Contributors
@@ -10,55 +10,46 @@ The following people contributed patches/fixes or (noted in brackets
 in the changelog below) reports, notes, and ideas that have been
 incorporated in changes in this release:
 
-Alec Leamas <leamas.alec@gmail.com>
-Andrey Vagin <avagin@openvz.org>
-Andy Lutomirski <luto@amacapital.net>
-Carsten Grohmann <carstengrohmann@gmx.de>
-Chris Gassib <position0x45@hotmail.com>
+Arnaud Gaillard <arnaud.mgaillard@gmail.com>
+Bill Pemberton <wfp5p@worldbroken.com>
+Carlos O'Donell <carlos@redhat.com>
 Christoph Hellwig <hch@lst.de>
-Darren Hart <dvhart@infradead.org>
-Darrick J. Wong <darrick.wong@oracle.com>
-Élie Bouttier <elie@bouttier.eu>
-Eric Biggers <ebiggers3@gmail.com>
-Eric W. Biederman <ebiederm@xmission.com>
-Florian Weimer <fweimer@redhat.com>
-Håkon Sandsmark <hsandsma@cisco.com>
-Iustin Pop <iustin@k1024.org>
-Jacob Willoughby <jacob@spacemonkey.com>
+David Turner <novalis@novalis.org>
+Dr. Tobias Quathamer <toddy@debian.org>
+Elliott Hughes <enh@google.com>
+Eugene Syromyatnikov <evgsyr@gmail.com>
+Heinrich Schuchardt <xypron.glpk@gmx.de>
+Hu Keping <hukeping@huawei.com>
+Igor Liferenko <igor.liferenko@gmail.com>
+Ivan Kharpalev <ivan.kharpalev@gmail.com>
 Jakub Wilk <jwilk@jwilk.net>
-James H Cownie <james.h.cownie@intel.com>
 Jann Horn <jann@thejh.net>
-John Wiersba <jrw32982@yahoo.com>
-Jörn Engel <joern@purestorage.com>
-Josh Triplett <josh@kernel.org>
-Kai Mäkisara <kai.makisara@kolumbus.fi>
-Kees Cook <keescook@chromium.org>
+Josh Triplett <josh@joshtriplett.org>
 Keno Fischer <keno@juliacomputing.com>
-Li Peng <lip@dtdream.com>
-Marko Kevac <marko@kevac.org>
-Marko Myllynen <myllynen@redhat.com>
+Laurent Georget <laurent.georget@supelec.fr>
+Local Lembke <logan@blackhillsinfosec.com>
+Mats Wichmann <mats@wichmann.us>
 Michael Kerrisk <mtk.manpages@gmail.com>
-Michał Zegan <webczat_200@poczta.onet.pl>
-Miklos Szeredi <mszeredi@redhat.com>
-Mitch Walker <mitch@gearnine.com>
-Neven Sajko <nsajko@gmail.com>
-Nikos Mavrogiannopoulos <nmav@redhat.com>
-Omar Sandoval <osandov@fb.com>
-Ori Avtalion <ori@avtalion.name>
-Rahul Bedarkar <rahulbedarkar89@gmail.com>
-Robin Kuzmin <kuzmin.robin@gmail.com>
-Rob Landley <rob@landley.net>
-Shawn Landden <shawn@churchofgit.com>
-Stefan Puiu <stefan.puiu@gmail.com>
-Stephen Smalley <sds@tycho.nsa.gov>
-Szabolcs Nagy <szabolcs.nagy@arm.com>
-Thomas Gleixner <tglx@linutronix.de>
-Tobias Stoeckmann <tobias@stoeckmann.org>
-Tom Callaway <tcallawa@redhat.com>
-Tom Gundersen <teg@jklm.no>
-Vince Weaver <vincent.weaver@maine.edu>
-W. Trevor King <wking@tremily.us>
-"Yuming Ma(马玉明)" <mayuming@le.com>
+Mike Crowe <mac@mcrowe.com>
+Mike Frysinger <vapier@gentoo.org>
+Namhyung Kim <namhyung@gmail.com>
+Nikola Forró <nforro@redhat.com>
+Patrick McLean <patrickm@gaikai.com>
+Peter Wu <peter@lekensteyn.nl>
+Petr Cermak <petrcermak@chromium.org>
+Quentin Rameau <quinq@fifth.space>
+Ray Bellis <ray@isc.org>
+Rich Felker <dalias@libc.org>
+Ruben Kerkhof <ruben@rubenkerkhof.com>
+Sam Varshavchik <mrsam@courier-mta.com>
+Sebastian Andrzej Siewior <bigeasy@linutronix.de>
+Siward de Groot <siward@wanadoo.nl>
+Sloane Bernstein <sloane@cpanel.net>
+Stefan Tauner <tauner@technikum-wien.at>
+Tim Savannah <kata198@gmail.com>
+Ursache Vladimir <f35f22fan@gmail.com>
+Zefram <zefram@fysh.org>
+王守堰 <wangshouyan@gmail.com>
 
 Apologies if I missed anyone!
 
@@ -66,646 +57,529 @@ Apologies if I missed anyone!
 New and rewritten pages
 -----------------------
 
-ioctl_fideduperange.2
-    Darrick J. Wong  [Christoph Hellwig, Michael Kerrisk]
-        New page documenting the FIDEDUPERANGE ioctl
-            Document the FIDEDUPERANGE ioctl, formerly known as
-            BTRFS_IOC_EXTENT_SAME.
+quotactl.2
+    Eugene Syromyatnikov  [Michael Kerrisk]
+        Updated information regarding disk quota flags
+            Added information regarding DQF_SYS_FILE flag; updated definition
+            of V1_DQF_RSQUASH, which has been defined privately and defined
+            publicly as DQF_ROOT_SQUASH.
+    Eugene Syromyatnikov
+        Updated information regarding XFS-specific quotactl subcommands
+            Added information regarding structure definitions used for
+            XFS-specific subcommands, updated flag constants, added
+            information regarding ignored syscall arguments, added notes on
+            usage of kernel UAPI header.
+    Eugene Syromyatnikov
+        Additions regarding project quotas
+            Added information regarding presence of project quotas.
 
-ioctl_ficlonerange.2
-    Darrick J. Wong  [Christoph Hellwig, Michael Kerrisk]
-        New page documenting FICLONE and FICLONERANGE ioctls
-            Document the FICLONE and FICLONERANGE ioctls, formerly known as
-            the BTRFS_IOC_CLONE and BTRFS_IOC_CLONE_RANGE ioctls.
-
-nextup.3
+bswap.3
     Michael Kerrisk
-        New page documenting nextup(), nextdown(), and related functions
+        New page documenting bswap_16(), bswap_32(), and bswap_64()
 
-mount_namespaces.7
-    Michael Kerrisk  [Michael Kerrisk]
-        New page describing mount namespaces
+cgroups.7
+    Michael Kerrisk
+       Substantial rewrites, additions, and corrections.
 
 
 Newly documented interfaces in existing pages
 ---------------------------------------------
 
-mount.2
+readv.2
     Michael Kerrisk
-        Document flags used to set propagation type
-            Document MS_SHARED, MS_PRIVATE, MS_SLAVE, and MS_UNBINDABLE.
-    Michael Kerrisk
-        Document the MS_REC flag
-
-ptrace.2
-    Michael Kerrisk  [Kees Cook, Jann Horn, Eric W. Biederman, Stephen Smalley]
-        Document ptrace access modes
+        Document the pwritev2() RWF_SYNC  and RWF_DSYNC flags
 
 proc.5
     Michael Kerrisk
-        Document /proc/[pid]/timerslack_ns
-    Michael Kerrisk
-        Document /proc/PID/status 'Ngid' field
-    Michael Kerrisk
-        Document /proc/PID/status fields: 'NStgid', 'NSpid', 'NSpgid', 'NSsid'
-    Michael Kerrisk
-        Document /proc/PID/status 'Umask' field
+        Document /proc/PID/seccomp
+    Jann Horn
+        Document /proc/[pid]/task/[tid]/children
+            Document the /proc/[pid]/task/[tid]/children interface from
+            CRIU, and more importantly, document why it's usually not
+            a good interface.
 
 
 New and changed links
 ---------------------
 
-nextdown.3
-nextdownf.3
-nextdownl.3
-nextupf.3
-nextupl.3
+bswap_16.3
+bswap_32.3
+bswap_64.3
+        New link to new bswap.3
+
+
+Global changes
+--------------
+
+Various pages
     Michael Kerrisk
-        New links to nextup(3)
+        Fix section ordering
+            Various pages had sections in an order different from
+            that prescribed in man-pages(7).
+
+Various pages
+    Michael Kerrisk  [Mike Frysinger]
+        Consistently use /proc/[pid] (not /proc/PID)
+
+Various pages
+    Michael Kerrisk
+        Fix order of SEE ALSO entries
+            Entries should be ordered first by section, and then alphabetically
+            within the section.
+
+Various pages
+    Michael Kerrisk
+        Order ERRORS alphabetically
+
+Various pages
+    Michael Kerrisk
+        Remove section number from page self reference
+            Fix places where pages refer to the function that they describe
+            and include a section number in that reference. Such references
+            cause some HTML-rendering tools to create self-references in the
+            page.
+
+A few pages
+    Michael Kerrisk
+        Eliminate groff "cannot adjust line" warnings
 
 
 Changes to individual pages
 ---------------------------
 
-ldd.1
+pldd.1
+    Michael Kerrisk  [Carlos O'Donell]
+        Note gdb(1) command that can be used as a replacement for pldd
+            Taken from Carlos O'Donnell's suggestion in
+            https://sourceware.org/bugzilla/show_bug.cgi?id=18035#c2
     Michael Kerrisk
-        Add a little more detail on why ldd is unsafe with untrusted executables
+        BUGS: pldd has not worked since glibc 2.19
+
+accept.2
     Michael Kerrisk
-        Add more detail on the output of ldd
+        Mention epoll(7) alongside poll()/select()
+    Michael Kerrisk
+        Demote discussion of DECNet to NOTES
+            DECNet ceased to be important long ago...
 
-localedef.1
-    Marko Myllynen
-        Drop --old-style description
-            The glibc upstream decided to drop localedef(1) --old-style
-            option [1] altogether, I think we can do the same with
-            localedef(1), the option hasn't done anything in over 16
-            years and I doubt anyone uses it.
-
-add_key.2
-    Mitch Walker
-        Empty payloads are not allowed in user-defined keys
+adjtimex.2
+    Nikola Forró
+        Fix kernel version references
 
 chroot.2
     Michael Kerrisk
-        SEE ALSO: add pivot_root(2)
+        Note user namespace requirements for CAP_SYS_CHROOT
 
 clone.2
+    Keno Fischer  [Josh Triplett]
+        Adjust syscall prototype and expand CLONE_SETTLS description
+    Michael Kerrisk  [Josh Triplett, Josh Triplett]
+        Document raw syscall interfaces on various other architectures
     Michael Kerrisk
-        Add reference to mount_namespaces(7) under CLONE_NEWNS description
+        Change types for 'ptid' and 'ctid' in syscall prototypes
+            These types changed from 'void *' to 'int *' back in Linux 3.8.
+    Michael Kerrisk
+        EINVAL is generated by glibc wrapper for NULL 'fn' or 'child_stack'
+            Clarify that this error is produced by the wrapper function, not
+            the underlying system call. In particular, the point is that the
+            raw system call can accommodate a NULL pointer for 'child_stack'.
+    Michael Kerrisk  [Elliott Hughes]
+        Make the implications of CLONE_FILES more explicit
+            If CLONE_FILES is not set, the duplicated FDs nevertheless share
+            file offset and status flags via the open file description.
+    Michael Kerrisk
+        Mention kcmp() under notes
+
+close.2
+    Michael Kerrisk
+        Add mention of the close-on-exec flag
+    Michael Kerrisk
+        Clarify discussion noting that close() does not flush buffer cache
+
+epoll_wait.2
+    Mike Crowe
+        Clarify that the timeout is measured against CLOCK_MONOTONIC
+
+execve.2
+    Michael Kerrisk
+        Mention use of 'environ' to access environment list
+    Michael Kerrisk
+        Note that real UID, real GID, and supplementary GIDs are unchanged
+
+fanotify_init.2
+    Heinrich Schuchardt
+        Update BUGS information
+
+fcntl.2
+    Michael Kerrisk
+        Note an important detail of F_SETOWN permission rules for signals
+            F_SETOWN records the caller's credentials at the time of
+            the fcntl() call, and it is these saved credentials that
+            are used for subsequent permission checks.
+    Michael Kerrisk
+        Make the description of the effect of close-on-exec a little clearer
+    Michael Kerrisk
+        Clarify that F_GETFD and F_GETFL return flags via the function result
 
 fork.2
     Michael Kerrisk
-        Add ENOMEM error for PID namespace where "init" has died
+        PID of new process also does not match any existing session ID
 
-futex.2
+fsync.2
     Michael Kerrisk
-        Correct an ENOSYS error description
-            Since Linux 4.5, FUTEX_CLOCK_REALTIME is allowed with FUTEX_WAIT.
-    Michael Kerrisk  [Darren Hart]
-        Remove crufty text about FUTEX_WAIT_BITSET interpretation of timeout
-            Since Linux 4.5, FUTEX_WAIT also understands
-            FUTEX_CLOCK_REALTIME.
-    Michael Kerrisk  [Thomas Gleixner]
-        Explain how to get equivalent of FUTEX_WAIT with an absolute timeout
-    Michael Kerrisk
-        Describe FUTEX_BITSET_MATCH_ANY
-            Describe FUTEX_BITSET_MATCH_ANY and FUTEX_WAIT and FUTEX_WAKE
-            equivalences.
-    Michael Kerrisk
-        Note that at least one bit must be set in mask for BITSET operations
-            At least one bit must be set in the 'val3' mask supplied for the
-            FUTEX_WAIT_BITSET and FUTEX_WAKE_BITSET operations.
-    Michael Kerrisk  [Thomas Gleixner, Darren Hart]
-        Fix descriptions of various timeouts
-    Michael Kerrisk
-        Clarify clock default and choices for FUTEX_WAIT
+        SEE ALSO: add pwritev(2)
+            Since Linux 4.7, pwritev() has flags related to I/O
+            integrity completion.
 
-getitimer.2
+getdomainname.2
     Michael Kerrisk
-        Substantial rewrites to various parts of the page
-    Michael Kerrisk  [Tom Callaway]
-        Change license to note that page may be modified
-            The page as originally written carried text that said the page may
-            be freely distributed but made no statement about modification.
-            In the 20+ years since it was first written, the page has in fact
-            seen repeated, sometimes substantial, modifications, and only a
-            small portion of the original text remains. One could I suppose
-            rewrite the last few pieces that remain from the original,
-            but as the largest contributor to the pages existing text,
-            I'm just going to relicense it to explicitly note that
-            modification is permitted. (I presume the failure by the
-            original author to grant permission to modify was simply an
-            oversight; certainly, the large number of people who have
-            changed the page have taken that to be the case.)
+        Note user namespace requirements for CAP_SYS_ADMIN
 
-            See also https://bugzilla.kernel.org/show_bug.cgi?id=118311
-
-get_mempolicy.2
-    Michael Kerrisk  [Jörn Engel]
-        Correct rounding to 'maxnodes' (bits, not bytes)
-    Michael Kerrisk  [Jörn Engel]
-        Fix prototype for get_mempolicy()
-            In numaif.h, 'addr' is typed as 'void *'
-
-getpriority.2
+getgroups.2
     Michael Kerrisk
-        Make discussion of RLIMIT_NICE more prominent
-            The discussion of RLIMIT_NICE was hidden under the EPERM error,
-            where it was difficult to find. Place some relevant text in
-            DESCRIPTION.
-    Michael Kerrisk
-        Note that getpriority()/setpriority deal with same attribute as nice(2)
-    Michael Kerrisk  [Robin Kuzmin]
-        Clarify equivalence between lower nice value and higher priority
+        Note user namespace requirements for CAP_SETGID
 
-get_robust_list.2
+gethostname.2
     Michael Kerrisk
-        get_robust_list() is governed by PTRACE_MODE_READ_REALCREDS
+        Note user namespace requirements for CAP_SYS_ADMIN
 
-ioctl.2
+getrlimit.2
     Michael Kerrisk
-        SEE ALSO: add ioctl_fideduperange(2) and ioctl_ficlonerange(2)
+        Note user namespace semantics for CAP_SYS_RESOURCE
+
+getsid.2
+    Michael Kerrisk
+        Rework description to be somewhat clearer
+    Michael Kerrisk
+        Correct the definition of "session ID"
+
+getunwind.2
+    Michael Kerrisk
+        Simplify text referring to vdso(7)
+            The detail given here is redundant, since this info is also
+            in vdso(7).
 
 kcmp.2
     Michael Kerrisk
-        kcmp() is governed by PTRACE_MODE_READ_REALCREDS
-    Shawn Landden
-        Note about SECURITY_YAMA
-kill.2
-    Michael Kerrisk  [John Wiersba]
-        Clarify the meaning if sig==0
+        Add an example program
 
-lookup_dcookie.2
+kill.2
     Michael Kerrisk
-        SEE ALSO: add oprofile(1)
+        Note the user namespace requirement for CAP_KILL
+
+killpg.2
+    Michael Kerrisk
+        Refer reader to kill(2) for signal permission rules
+
+mlock.2
+    Sebastian Andrzej Siewior
+        Document that fork() after mlock() may be a bad idea in a RT process
 
 mmap.2
-    Michael Kerrisk  [Rahul Bedarkar]
-        EXAMPLE: for completeness, add munmap() and close() calls
+    Jann Horn
+        Describe treatment of 'offset' for MAP_ANONYMOUS
+    Michael Kerrisk  [Siward de Groot]
+        Small improvement to description of MAP_SHARED
+            See https://sourceware.org/bugzilla/show_bug.cgi?id=6887
 
-mount.2
+msgctl.2
+msgget.2
+msgop.2
+semctl.2
+semget.2
+semop.2
+shmctl.2
+shmget.2
+shmop.2
     Michael Kerrisk
-        Restructure discussion of 'mountflags' into functional groups
-            The existing text makes no differentiation between different
-            "classes" of mount flags. However, certain flags such as
-            MS_REMOUNT, MS_BIND, MS_MOVE, etc. determine the general
-            type of operation that mount() performs. Furthermore, the
-            choice of which class of operation to perform is performed in
-            a certain order, and that order is significant if multiple
-            flags are specified. Restructure and extend the text to
-            reflect these details.
-    Michael Kerrisk
-        Relocate text on multimounting and mount stacking to NOTES
-            The text was somewhat out of place in its previous location;
-            NOTES is a better location.
-    Michael Kerrisk
-        Remove version numbers attached to flags that are modifiable on remount
-            This information was simply bogus. Mea culpa.
-    Michael Kerrisk
-        Refer reader to mount_namespaces(7) for details on propagation types
-    Michael Kerrisk
-        SEE ALSO: s/namespaces(7)/mount_namespaces(7)/
-    Omar Sandoval
-        MS_BIND still ignores mountflags
-            This is clear from the do_mount() function in the kernel as of v4.6.
-    Michael Kerrisk
-        Note the default treatment of ATIME flags during MS_REMOUNT
-            The behavior changed in Linux 3.17.
-    Michael Kerrisk
-        Clarify that MS_MOVE ignores remaining bits in 'mountflags'
-    Michael Kerrisk
-        Note kernel version that added MS_MOVE
-    Michael Kerrisk
-        MS_NOSUID also disables file capabilities
-    Michael Kerrisk
-        Relocate/demote/rework text on MS_MGC_VAL
-            The use of this constant has not been needed for 15 years now.
-    Michael Kerrisk
-        Clarify that 'source' and 'target' are pathnames, and can refer to files
-    Michael Kerrisk
-        Update example list of filesystem types
-            Put more modern examples in; remove many older examples.
-    Michael Kerrisk
-        MS_LAZYTIME and MS_RELATIME can be changed on remount
-    Michael Kerrisk
-        Explicitly note that MS_DIRSYNC setting cannot be changed on remount
-    Michael Kerrisk
-        Move text describing 'data' argument higher up in page
-            In preparation for other reworking.
-    Michael Kerrisk
-        Since Linux 2.6.26, bind mounts can be made read-only
+        Note the user namespace requirements for CAP_IPC_OWNER
 
 open.2
-    Eric Biggers
-        Refer to correct functions in description of O_TMPFILE
-
-pciconfig_read.2
-    Michael Kerrisk  [Tom Callaway]
-        Change license to note that page may be modified
-            Niki Rahimi, the author of this page, has agreed that it's okay
-            to change the license to note that the page can be modified.
-
-            See https://bugzilla.kernel.org/show_bug.cgi?id=118311
-
-perf_event_open.2
     Michael Kerrisk
-        If pid > 0, the operation is governed by PTRACE_MODE_READ_REALCREDS
-    Jann Horn
-        Document new perf_event_paranoid default
-    Keno Fischer  [Vince Weaver]
-        Add a note that dyn_size is omitted if size == 0
-            The perf_output_sample_ustack in kernel/events/core.c only writes
-            a single 64 bit word if it can't dump the user registers. From the
-            current version of the man page, I would have expected two 64 bit
-            words (one for size, one for dyn_size). Change the man page to
-            make this behavior explicit.
+        Clarify user namespace capability requirements for O_NOATIME
+    Michael Kerrisk
+        NOTES: kcmp() can be used to test if two FDs refer to the same OFD
+    Michael Kerrisk
+        F2FS support for O_TMPFILE was added in Linux 3.16
+    Michael Kerrisk
+        Clarify the rules about how the group ID of a new file is determined
 
 prctl.2
     Michael Kerrisk
-        Some wording improvements in timer slack description
+        Refer to proc(5) for effects of dumpability on ownership of /proc/PID/*
     Michael Kerrisk
-        Refer reader to discussion of /proc/[pid]/timerslack_ns
-            Under discussion of PR_SET_TIMERSLACK, refer the reader to
-            the /proc/[pid]/timerslack_ns file, documented in proc(5).
-
-preadv2.2
+        ERRORS: Add EACCES error for PR_SET_SECCOMP-SECCOMP_MODE_FILTER
     Michael Kerrisk
-        New link to readv(2)
-            This link should have been added in the previous release...
-
-process_vm_readv.2
+        Simplify list of cases where "dumpable" attribute is reset
     Michael Kerrisk
-        Rephrase permission rules in terms of a ptrace access mode check
+        Note user namespace requirements for PR_CAPBSET_DROP CAP_SETPCAP
 
-ptrace.2
-    Michael Kerrisk  [Jann Horn]
-        Update Yama ptrace_scope documentation
-            Reframe the discussion in terms of PTRACE_MODE_ATTACH checks,
-            and make a few other minor tweaks and additions.
-    Michael Kerrisk, Jann Horn
-        Note that user namespaces can be used to bypass Yama protections
+readlink.2
+    Michael Kerrisk  [Ursache Vladimir]
+        Make example program handle links that report a size of zero
+            Some "magic" symlinks created by the kernel (e.g., those under
+            /proc and /sys) report 'st_size' as zero. Modify the example
+            program to handle that possibility.
     Michael Kerrisk
-        Note that PTRACE_SEIZE is subject to a ptrace access mode check
+        Emphasize that truncation of returned buffer generates no error
+
+readv.2
+    Michael Kerrisk  [Christoph Hellwig]
+        Clarify that RWF_DSYNC and RWF_SYNC apply only to data being written
     Michael Kerrisk
-        Rephrase PTRACE_ATTACH permissions in terms of ptrace access mode check
+        Add preadv2() and pwritev2() to NAME line
 
-pwritev2.2
+reboot.2
     Michael Kerrisk
-        New link to readv(2)
-            This link should have been added in the previous release...
+        Note user namespace requirements around CAP_SYS_BOOT
 
-quotactl.2
-    Michael Kerrisk  [Jacob Willoughby]
-        'dqb_curspace' is in bytes, not blocks
-            This error appears to have been injected into glibc
-            when copying some headers from BSD.
+rename.2
+    Michael Kerrisk  [Tim Savannah]
+        Clarify that ERRORS may cause rename to fail (not to be nonatomic)
 
-            See https://bugs.debian.org/825548
-
-recv.2
-    Michael Kerrisk  [Tom Gundersen]
-        With pending 0-length datagram read() and recv() with flags == 0 differ
-
-setfsgid.2
-setfsuid.2
-    Jann Horn  [Michael Kerrisk]
-        Fix note about errors from the syscall wrapper
-            See sysdeps/unix/sysv/linux/i386/setfsuid.c in glibc-2.2.1.
-            (This code is not present in modern glibc anymore.)
+sched_setaffinity.2
     Michael Kerrisk
-        Move glibc wrapper notes to "C library/kernel differences" subsection
+        Note user namespace requirements for CAP_SYS_NICE
 
-sysinfo.2
+seccomp.2
     Michael Kerrisk
-        Rewrite and update various pieces
+        CAP_SYS_ADMIN is required only in caller's user namespace
+
+select_tut.2
+    Peter Wu
+        Fix various issues in example program
+
+seteuid.2
+    Michael Kerrisk
+        Note user namespace requirements for CAP_SETUID and CAP_SETGID
+
+setgid.2
+    Michael Kerrisk
+        Note user namespace requirements for CAP_SETGID
+
+setpgid.2
+    Michael Kerrisk
+        Add a reference to credentials(7)
+
+setpgid.2
+setsid.2
+    Michael Kerrisk
+        Relocate some text on sessions and sessions leaders
+            Some text that was in setpgid(2) is better placed in setsid(2).
+
+setresuid.2
+    Michael Kerrisk
+        Note user namespace requirements for CAP_SETUID
+
+setreuid.2
+    Michael Kerrisk
+        Note user namespace requirements for CAP_SETUID and CAP_SETGID
+
+setsid.2
+    Michael Kerrisk
+        Refer to credentials(7) for details for details on controlling terminal
+            Refer to credentials(7) for details of how a session obtains
+            a controlling terminal.
+
+set_thread_area.2
+    Michael Kerrisk
+        Add get_thread_area() to NAME
+
+setuid.2
+    Michael Kerrisk
+        Note user namespace requirements for CAP_SETUID
+
+sigprocmask.2
+    Keno Fischer
+        Expand/clarify libc/kernel sigset_t difference
+
+stat.2
+    Michael Kerrisk  [Ursache Vladimir, Mats Wichmann]
+        Improve discussion of 'st_size' for /proc and /sys files
+    Michael Kerrisk
+        _BSD_SOURCE and _SVID_SOURCE no longer expose nanosecond timestamps
 
 umask.2
     Michael Kerrisk
-        NOTES: Mention /proc/PID/status 'Umask' field
-
-umount.2
-    Michael Kerrisk
-        SEE ALSO: add mount_namespaces(7)
-
-unshare.2
-    Michael Kerrisk
-        Add reference to mount_namespaces(7) under CLONE_NEWNS description
-
-utimensat.2
-    Michael Kerrisk  [Rob Landley]
-        Note that the glibc wrapper disallows pathname==NULL
+        Provide a rationale for the existence of /proc/PID/status 'Umask' field
 
 wait.2
     Michael Kerrisk
-        Since Linux 4.7, __WALL is implied if child being ptraced
+        Remove erroneous statement that waitpid() is implemented via wait4()
+            There is a fallback to wait4(), but only if the kernel does
+            not provide a waitpid() system call.
+
+bindresvport.3
+rcmd.3
+ip.7
     Michael Kerrisk
-        waitid() now (since Linux 4.7) also supports __WNOTHREAD/__WCLONE/__WALL
+        Note user namespace requirements for CAP_NET_BIND_SERVICE
 
-assert.3
-    Nikos Mavrogiannopoulos
-        Improved description
-            Removed text referring to text not being helpful to users. Provide
-            the error text instead to allow the reader to determine whether it
-            is helpful.  Recommend against using NDEBUG for programs to
-            exhibit deterministic behavior.  Moved description ahead of
-            recommendations.
+byteorder.3
     Michael Kerrisk
-        Clarify details of message printed by assert()
+        SEE ALSO: add bswap(3)
 
-fmax.3
-fmin.3
+dlopen.3
     Michael Kerrisk
-        SEE ALSO: add fdim(3)
+        dlmopen() is still broken in glibc 2.24
 
-getauxval.3
-    Cownie, James H
-        Correct AT_HWCAP result description
-
-inet_pton.3
-    Stefan Puiu
-        Mention byte order
-            Come to think of it, this probably applies to IPv6 as well. Moving to
-            the paragraph before:
-
-malloc_hook.3
+endian.3
     Michael Kerrisk
-        glibc 2.24 removes __malloc_initialize_hook
+        SEE ALSO: add bswap(3)
 
-memmem.3
-    Michael Kerrisk  [Shawn Landden]
-        Note that memmem() is present on some other systems
+ffs.3
+    Michael Kerrisk  [Stefan Tauner]
+        Correct feature test macro requirements
 
-mkdtemp.3
-mktemp.3
+fmemopen.3
+    Michael Kerrisk  [Rich Felker]
+        Remove bogus suggestion to use setbuffer()
+
+getlogin.3
     Michael Kerrisk
-        SEE ALSO: add mktemp(1)
+        Update feature test macro requirements for cuserid()
 
-printf.3
-    Michael Kerrisk  [Shawn Landden]
-        Note support in other C libraries for %m and %n
-
-strcasecmp.3
-    Michael Kerrisk  [Ori Avtalion]
-        Make details of strncasecmp() comparison clearer
-
-strcat.3
+getumask.3
     Michael Kerrisk
-        Add a program that shows the performance characteristics of strcat()
-            In honor of Joel Spolksy's visit to Munich, let's start educating
-            Schlemiel The Painter.
-
-strtoul.3
+        Note that getumask() is still unavailable in glibc 2.24
     Michael Kerrisk
-        SEE ALSO: add a64l(3)
+        Point to umask(2) for a thread-safe way to discover process's umask
 
-strxfrm.3
-    Michael Kerrisk  [Florian Weimer]
-        Remove NOTES section
-            strxfrm() and strncpy() are not precisely equivalent in the
-            POSIX locale, so this NOTES section was not really correct.
+mkstemp.3
+    Quentin Rameau
+        Fix _POSIX_C_SOURCE value for mkstemp()
+            The correct _POSIX_C_SOURCE value has always been 200809L,
+            not 200112L.
 
-            See https://bugzilla.kernel.org/show_bug.cgi?id=104221
+pthread_join.3
+    Michael Kerrisk  [Mats Wichmann]
+        Note that the caller might do clean up after joining with a thread
+    Michael Kerrisk  [王守堰]
+        Clarify use of 'retval' pointer
 
-console_codes.4
-console_ioctl.4
-tty.4
-vcs.4
-charsets.7
-    Marko Myllynen
-        Remove console(4) references
-            0f9e647 removed the obsolete console(4) page but we still have few
-            references to it. The patch below removes them or converts to refs
-            to concole_ioctl(4) where appropriate.
+resolver.3
+    Ray Bellis
+        Correct arguments to res_ninit(res_state statep)
 
-console_ioctl.4
-    Michael Kerrisk  [Chris Gassib]
-        The argument to KDGETMODE is an 'int'
-
-lirc.4
-    Alec Leamas
-        Update after upstreamed lirc.h, bugfixes.
-
-st.4
-    Kai Mäkisara
-        Fix description of read() when block is larger than request
-    Kai Mäkisara
-        Update MTMKPART for kernels >= 4.6
-            Update the description of the MTMKPART operation of MTIOCTOP to match
-            the changes in kernel version 4.6.
-
-charmap.5
-    Marko Myllynen
-        Clarify keyword syntax
-            Updates charmap(5) to match the syntax all the glibc
-            charmap files are using currently.
-
-elf.5
+strverscmp.3
     Michael Kerrisk
-        SEE ALSO: add readelf(1)
+        Add an example program
 
-locale.5
-    Marko Myllynen
-        Document missing keywords, minor updates
-    Marko Myllynen
-        Clarify keyword syntax
-    Marko Myllynen
-        Adjust conformance
+wcstombs.3
+    Michael Kerrisk  [Igor Liferenko]
+        wcsrtombs() does not provide thread-safe interface to same functionality
+            See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741360
+
+core.5
+    Mike Frysinger  [Michael Kerrisk]
+       Add more details for output paths and the crash handler
+            People sometimes assume that the crash handler runs in the same
+            context as the crashing process.  They would be incorrect :).
 
 proc.5
-namespaces.7
+    Mike Frysinger
+        Clarify the root symlink and mount namespaces
+            If the target process is in a different mount namespace, the root
+            symlink actually shows that view of the filesystem.
+    Michael Kerrisk  [Mike Frysinger]
+        Expand discussion of /proc/[pid]/root
+            Add a shell example showing that /proc/[pid]/root is more
+            than a symlink. Based on an example provided by Mike Frysinger
+            in an earlier commit message.
     Michael Kerrisk
-        Move /proc/PID/mounts information to proc(5)
-            There was partial duplication, and some extra information
-            in namespaces(7). Move everything to proc(5).
-
-proc.5
+        Explain rules determining ownership of /proc/PID/* files
+            Describe the effect of the "dumpable" attribute on ownership
+            of /proc/PID files.
     Michael Kerrisk
-        /proc/PID/fd/* are governed by PTRACE_MODE_READ_FSCREDS
-            Permission to dereference/readlink /proc/PID/fd/* symlinks is
-            governed by a PTRACE_MODE_READ_FSCREDS ptrace access mode check.
+        Note effect of 'suid_dumpable' on ownership of /proc/PID files
     Michael Kerrisk
-        /proc/PID/timerslack_ns is governed by PTRACE_MODE_ATTACH_FSCREDS
-            Permission to access /proc/PID/timerslack_ns is governed by
-            a PTRACE_MODE_ATTACH_FSCREDS ptrace access mode check.
+        Refer to ptrace(2) for info on effect of suid_dumpable on ptraceability
     Michael Kerrisk
-        Document /proc/PID/{maps,mem,pagemap} access mode checks
-            Permission to access /proc/PID/{maps,pagemap} is governed by a
-            PTRACE_MODE_READ_FSCREDS ptrace access mode check.
-
-            Permission to access /proc/PID/mem is governed by a
-            PTRACE_MODE_ATTACH_FSCREDS ptrace access mode check.
+        Add reference to core(5) in discussion of 'suid_dumpable'
     Michael Kerrisk
-        Note /proc/PID/stat fields that are governed by PTRACE_MODE_READ_FSCREDS
+        Note that 'suid_dumpable' mode 1 is insecure
     Michael Kerrisk
-        /proc/PID/{cwd,exe,root} are governed by PTRACE_MODE_READ_FSCREDS
-            Permission to dereference/readlink /proc/PID/{cwd,exe,root} is
-            governed by a PTRACE_MODE_READ_FSCREDS ptrace access mode check.
+        Document /proc/meminfo '+ShmemHugePages' and 'ShmemPmdMapped' fields
     Michael Kerrisk
-        /proc/PID/io is governed by PTRACE_MODE_READ_FSCREDS
-            Permission to access /proc/PID/io is governed by
-            a PTRACE_MODE_READ_FSCREDS ptrace access mode check.
+        Document /proc/PID/status 'RssAnon', 'RssFile', and 'RssShmem' fields
     Michael Kerrisk
-        /proc/PID/{personality,stack,syscall} are governed by PTRACE_MODE_ATTACH_FSCREDS
-            Permission to access /proc/PID/{personality,stack,syscall} is
-            governed by a PTRACE_MODE_ATTACH_FSCREDS ptrace access mode check.
+        Document /proc/PID/status 'HugetlbPages' field
+    Michael Kerrisk  [Zefram]
+        Clarify that /proc/PID/statm 'shared' field counts *resident* pages
+            See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741360
     Michael Kerrisk
-        /proc/PID/{auxv,environ,wchan} are governed by PTRACE_MODE_READ_FSCREDS
-            Permission to access /proc/PID/{auxv,environ,wchan} is governed by
-            a PTRACE_MODE_READ_FSCREDS ptrace access mode check.
+        Add reference to umask(2) in discussion of /proc/PID/status 'Umask'
     Michael Kerrisk
-        Move shared subtree /proc/PID/mountinfo fields to mount_namespaces(7)
-            Move information on shared subtree fields in /proc/PID/mountinfo
-            to mount_namespaces(7).
-    Michael Kerrisk  ["Yuming Ma(马玉明)"]
-        Note that /proc/net is now virtualized per network namespace
+        Clarify user namespace requirements for /proc/sys/fs/protected_hardlinks
     Michael Kerrisk
-        Add references to mount_namespaces(7)
-
-repertoiremap.5
-    Marko Myllynen
-        Clarify keyword syntax
-
-utmp.5
+        Note changes to config option governing /proc/[pid]/task/[tid]/children
     Michael Kerrisk
-        SEE ALSO: add logname(1)
+        Clarify description of /proc/PID/statm 'lib' and 'dt' fields
+            These fields are always zero since Linux 2.6.
+    Namhyung Kim  [Petr Cermak]
+        Add description of CLEAR_REFS_MM_HIWATER_RSS
+    Michael Kerrisk
+        Update example VM values in /proc/PID/status
 
 capabilities.7
-    Michael Kerrisk  [Andy Lutomirski]
-        Note on SECURE_NO_CAP_AMBIENT_RAISE for capabilities-only environment
     Michael Kerrisk
-        Add a detail on use of securebits
+        Add note about nosuid to file capabilities section
+    Michael Kerrisk
+        SEE ALSO: add proc(5)
+    Michael Kerrisk
+        SEE ALSO: add setsid(2) and setpgid(2)
 
-cgroup_namespaces.7
-    Michael Kerrisk
-        SEE ALSO: add namespaces(7)
+glob.7
+    Michael Kerrisk  [Arnaud Gaillard]
+        Clarify that syntactically incorrect patterns are left unchanged
 
-cgroups.7
+packet.7
     Michael Kerrisk
-        ERRORS: add mount(2) EBUSY error
+        Clarify user namespace requirements for CAP_NET_RAW
 
-cp1251.7
-cp1252.7
-iso_8859-1.7
-iso_8859-15.7
-iso_8859-5.7
-koi8-r.7
-koi8-u.7
-    Marko Myllynen
-        Add some charset references
-            Add some references to related charsets here and there.
+pipe.7
+    Michael Kerrisk  [Patrick McLean]
+        Document FIONREAD
 
-credentials.7
+raw.7
     Michael Kerrisk
-        SEE ALSO: add runuser(1)
-        SEE ALSO: add newgrp(1)
-        SEE ALSO: add sudo(8)
+        Clarify user namespace requirements for CAP_NET_RAW
+            Also remove mention of UID 0 as a method or creating
+            a raw socket. As far as I can tell from reading the
+            kernel source (net/ipv4/af_inet.c), this is not true.
 
-feature_test_macros.7
+socket.7
     Michael Kerrisk
-        Emphasize that applications should not directly include <features.h>
-
-man-pages.7
-    Michael Kerrisk
-        Clarify which sections man-pages provides man pages for
-    Michael Kerrisk  [Josh Triplett]
-        Add a few more details on formatting conventions
-            Add some more details for Section 1 and 8 formatting.
-            Separate out formatting discussion into commands, functions,
-            and "general".
-
-namespaces.7
-    Michael Kerrisk
-        /proc/PID/ns/* are governed by PTRACE_MODE_READ_FSCREDS
-            Permission to dereference/readlink /proc/PID/ns/* symlinks is
-            governed by a PTRACE_MODE_READ_FSCREDS ptrace access mode check.
-    Michael Kerrisk
-        Nowadays, file changes in /proc/PID/mounts are notified differently
-            Exceptional condition for select(), (E)POLLPRI for (e)poll
-    Michael Kerrisk
-        Remove /proc/PID/mountstats description
-            This is a duplicate of information in proc(5).
-    Michael Kerrisk
-        Refer to new mount_namespaces(7) for information on mount namespaces
-
-netlink.7
-    Andrey Vagin
-        Describe netlink socket options
-    Michael Kerrisk
-        Rework version information
-            (No changes in technical details.)
-
-pid_namespaces.7
-    Michael Kerrisk
-        SEE ALSO: add namespaces(7)
+        SIOCSPGRP: refer to fcntl(2) F_SETOWN for correct permission rules
+            The permission rules described for SIOCCPGRP are wrong. Rather
+            than repeat the rules here, just refer the reader to fcntl(2),
+            where the rules are described for F_SETOWN.
 
 unix.7
-    Michael Kerrisk
-        Move discussion on pathname socket permissions to DESCRIPTION
-    Michael Kerrisk
-        Expand discussion of socket permissions
-    Michael Kerrisk
-        Fix statement about permissions needed to connect to a UNIX doain socket
-            Read permission is not required (verified by experiment).
-    Michael Kerrisk
-        Clarify ownership and permissions assigned during socket creation
-    Michael Kerrisk  [Carsten Grohmann]
-        Update text on socket permissions on other systems
-            At least some of the modern BSDs seem to check for write
-            permission on a socket. (I tested OpenBSD 5.9.) On Solaris 10,
-            some light testing suggested that write permission is still
-            not checked on that system.
-    Michael Kerrisk
-        Note that umask / permissions have no effect for abstract sockets
-    W. Trevor King
-        Fix example code: 'ret' check after accept populates 'data_socket'
-    Michael Kerrisk
-        Move some abstract socket details to a separate subsection
-    Michael Kerrisk
-        Note that abstract sockets automatically disappear when FDs are closed
+    Michael Kerrisk  [Laurent Georget, Ivan Kharpalev]
+        Remove mention of recvmsg() from discussion of EPIPE error
+            See https://bugzilla.kernel.org/show_bug.cgi?id=137351
 
-user_namespaces.7
-    Michael Kerrisk  [Michał Zegan]
-        Clarify meaning of privilege in a user namespace
-            Having privilege in a user NS only allows privileged
-            operations on resources governed by that user NS. Many
-            privileged operations relate to resources that have no
-            association with any namespace type, and only processes
-            with privilege in the initial user NS can perform those
-            operations.
+ld.so.8
+    Michael Kerrisk
+        Expand description of LD_DEBUG
+            Provide a list of the categories, and note that multiple
+            categories can be specified.
+    Michael Kerrisk
+        Add glibc version for LD_USE_LOAD_BIAS
+    Michael Kerrisk
+        Clarify text describing whether secure-mode programs preload libraries
+    Michael Kerrisk
+        Remove discussion of environment variables understood by libc5
+            libc5 disappeared long ago, so cease cluttering up this page
+            with those ancient details. Thus, remove discussion of the
+            following environment variables: LD_AOUT_LIBRARY_PATH,
+            LD_AOUT_PRELOAD, LD_KEEPDIR, LD_NOWARN, and LDD_ARGV0.
+    Michael Kerrisk
+        Remove text with ancient libc4 and Linux libc details
+    Michael Kerrisk
+        Remove mention of "ELF only"
+            Drawing a distinction between ELF-only features versus a,out
+            ceased to be relevant long ago, so cluttering the page
+            with "ELF-only" serves no purpose.
 
-            See https://bugzilla.kernel.org/show_bug.cgi?id=120671
-    Michael Kerrisk  [Michał Zegan]
-        List the mount operations permitted by CAP_SYS_ADMIN
-            List the mount operations permitted by CAP_SYS_ADMIN in a
-            noninitial userns.
-
-            See https://bugzilla.kernel.org/show_bug.cgi?id=120671
-    Michael Kerrisk  [Michał Zegan]
-        CAP_SYS_ADMIN allows mounting cgroup filesystems
-            See https://bugzilla.kernel.org/show_bug.cgi?id=120671
-    Michael Kerrisk
-        Clarify details of CAP_SYS_ADMIN and cgroup v1 mounts
-            With respect to cgroups version 1, CAP_SYS_ADMIN in the user
-            namespace allows only *named* hierarchies to be mounted (and
-            not hierarchies that have a controller).
-    Michael Kerrisk
-        Clarify CAP_SYS_ADMIN details for mounting FS_USERNS_MOUNT filesystems
-    Michael Kerrisk
-        Correct user namespace rules for mounting /proc
-    Michael Kerrisk
-        Describe a concrete example of capability checking
-            Add a concrete example of how the kernel checks capabilities in
-            an associated user namespace when a process attempts a privileged
-            operation.
-    Michael Kerrisk
-        Correct kernel version where XFS added support for user namespaces
-            Linux 3.12, not 3.11.
-    Michael Kerrisk
-        SEE ALSO: add ptrace(2)
-        SEE ALSO: add cgroup_namespaces(7)
-
-utf-8.7:
-    Shawn Landden
-        Include RFC 3629 and clarify endianness which is left ambiguous
-            The endianness is suggested by the order the bytes are displayed,
-            but the text is ambiguous.
