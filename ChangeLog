@@ -1,6 +1,6 @@
-==================== Changes in man-pages-4.08 ====================
+==================== Changes in man-pages-4.09 ====================
 
-Released: 2016-10-08, Munich
+Released: 2016-12-12, Munich
 
 
 Contributors
@@ -10,46 +10,49 @@ The following people contributed patches/fixes or (noted in brackets
 in the changelog below) reports, notes, and ideas that have been
 incorporated in changes in this release:
 
-Arnaud Gaillard <arnaud.mgaillard@gmail.com>
-Bill Pemberton <wfp5p@worldbroken.com>
+Afzal Mohammed <afzal.mohd.ma@gmail.com>
+Andrew Clayton <andrew@digital-domain.net>
 Carlos O'Donell <carlos@redhat.com>
-Christoph Hellwig <hch@lst.de>
-David Turner <novalis@novalis.org>
+Christoph Lameter <cl@linux.com>
+Daniel Baluta <daniel.baluta@gmail.com>
+Daniel Berrange <berrange@redhat.com>
+Daniel Wagner <wagi@monom.org>
+Darrick J. Wong <darrick.wong@oracle.com>
+Dave Hansen <dave.hansen@intel.com>
+Dmitry V. Levin <ldv@altlinux.org>
 Dr. Tobias Quathamer <toddy@debian.org>
 Elliott Hughes <enh@google.com>
+Eric W. Biederman <ebiederm@xmission.com>
 Eugene Syromyatnikov <evgsyr@gmail.com>
+Florian Weimer <fweimer@redhat.com>
 Heinrich Schuchardt <xypron.glpk@gmx.de>
-Hu Keping <hukeping@huawei.com>
 Igor Liferenko <igor.liferenko@gmail.com>
-Ivan Kharpalev <ivan.kharpalev@gmail.com>
 Jakub Wilk <jwilk@jwilk.net>
 Jann Horn <jann@thejh.net>
-Josh Triplett <josh@joshtriplett.org>
+Jeremy Harris <jgh@redhat.com>
+Kees Cook <keescook@chromium.org>
 Keno Fischer <keno@juliacomputing.com>
 Laurent Georget <laurent.georget@supelec.fr>
-Local Lembke <logan@blackhillsinfosec.com>
-Mats Wichmann <mats@wichmann.us>
+Laurent Georget <laurent@lgeorget.eu>
+Marcos Mello <marcosfrm@gmail.com>
+Michael Hausenblas <michael.hausenblas@gmail.com>
 Michael Kerrisk <mtk.manpages@gmail.com>
-Mike Crowe <mac@mcrowe.com>
 Mike Frysinger <vapier@gentoo.org>
-Namhyung Kim <namhyung@gmail.com>
-Nikola Forró <nforro@redhat.com>
-Patrick McLean <patrickm@gaikai.com>
-Peter Wu <peter@lekensteyn.nl>
-Petr Cermak <petrcermak@chromium.org>
-Quentin Rameau <quinq@fifth.space>
-Ray Bellis <ray@isc.org>
-Rich Felker <dalias@libc.org>
-Ruben Kerkhof <ruben@rubenkerkhof.com>
-Sam Varshavchik <mrsam@courier-mta.com>
-Sebastian Andrzej Siewior <bigeasy@linutronix.de>
-Siward de Groot <siward@wanadoo.nl>
-Sloane Bernstein <sloane@cpanel.net>
-Stefan Tauner <tauner@technikum-wien.at>
-Tim Savannah <kata198@gmail.com>
-Ursache Vladimir <f35f22fan@gmail.com>
-Zefram <zefram@fysh.org>
-王守堰 <wangshouyan@gmail.com>
+Mike Galbraith <efault@gmx.de>
+Miroslav Koskar <mk@mkoskar.com>
+Nikos Mavrogiannopoulos <nmav@redhat.com>
+Omar Sandoval <osandov@fb.com>
+Pavel Emelyanov <xemul@virtuozzo.com>
+Piotr Kwapulinski <kwapulinski.piotr@gmail.com>
+Siddhesh Poyarekar <siddhesh@sourceware.org>
+Theodore Ts'o <tytso@mit.edu>
+Vegard Nossum <vegard.nossum@oracle.com>
+Vincent Lefevre <vincent@vinc17.net>
+Vince Weaver <vincent.weaver@maine.edu>
+Wainer dos Santos Moschetta <wainersm@linux.vnet.ibm.com>
+Wang Long <long.wanglong@huawei.com>
+Willy Tarreau <w@1wt.eu>
+Zack Weinberg <zackw@panix.com>
 
 Apologies if I missed anyone!
 
@@ -57,529 +60,832 @@ Apologies if I missed anyone!
 New and rewritten pages
 -----------------------
 
-quotactl.2
-    Eugene Syromyatnikov  [Michael Kerrisk]
-        Updated information regarding disk quota flags
-            Added information regarding DQF_SYS_FILE flag; updated definition
-            of V1_DQF_RSQUASH, which has been defined privately and defined
-            publicly as DQF_ROOT_SQUASH.
-    Eugene Syromyatnikov
-        Updated information regarding XFS-specific quotactl subcommands
-            Added information regarding structure definitions used for
-            XFS-specific subcommands, updated flag constants, added
-            information regarding ignored syscall arguments, added notes on
-            usage of kernel UAPI header.
-    Eugene Syromyatnikov
-        Additions regarding project quotas
-            Added information regarding presence of project quotas.
+pkey_alloc.2
+    Dave Hansen  [Michael Kerrisk]
+        New page documenting pkey_alloc(2) and pkey_free(2)
 
-bswap.3
+pthread_getattr_default_np.3
     Michael Kerrisk
-        New page documenting bswap_16(), bswap_32(), and bswap_64()
+        New page documenting pthread_getattr_default_np(3) and pthread_setattr_default_np(3)
 
-cgroups.7
+strfromd.3
+    Wainer dos Santos Moschetta
+        New page documenting strfromd(3), strfromf(3), and strfroml(3)
+            The ISO/IEC TS 18661-1 specifies the strfrom() class
+            of functions that convert a float-point value to string.
+
+fuse.4
+    Keno Fischer  [Michael Kerrisk]
+        New page describing /dev/fuse
+            This is my writeup of a basic description of /dev/fuse after
+            playing with it for a few hours today. It is of course woefully
+            incomplete, and since I neither have a use case nor am working
+            on this code, I will not be in a position to expand it in the
+            near future. However, I'm hoping this could still serve as a
+            handy reference for others looking at this interface.
+
+            [mtk: Notwithstanding the incompleteness of this page,
+            it's a good base for future extension.]
+
+tmpfs.5
     Michael Kerrisk
-       Substantial rewrites, additions, and corrections.
+        New page documenting the tmpfs filesystem
+
+pkeys.7
+    Dave Hansen  [Michael Kerrisk]
+        New page with overview of Memory Protection Keys
+
+random.7
+    Michael Kerrisk  [Theodore Ts'o, Nikos Mavrogiannopoulos, Laurent Georget]
+        New page providing an overview of interfaces for obtaining randomness
+            Contains material extracted from getrandom(2) and random(4),
+            as well as new material.
+
+sock_diag.7
+    Pavel Emelyanov, Dmitry V. Levin
+        New page documenting NETLINK_SOCK_DIAG interface
+
+close.2
+getpriority.2
+nice.2
+timer_create.2
+timerfd_create.2
+random.4
+elf.5
+proc.5
+sched.7
+    Various authors
+        These pages also saw substantial updates, as described under
+        "Changes to individual pages".
 
 
 Newly documented interfaces in existing pages
 ---------------------------------------------
 
-readv.2
+mmap.2
     Michael Kerrisk
-        Document the pwritev2() RWF_SYNC  and RWF_DSYNC flags
+        Add (much) more detail on MAP_GROWSDOWN
 
-proc.5
+mprotect.2
+    Dave Hansen
+        Document the new pkey_mprotect() system call
+    Eugene Syromyatnikov
+        Document PROT_SEM, PROT_SAO, PROT_GROWSUP, and PROT_GROWSDOWN
+
+prctl.2
+    Eugene Syromyatnikov
+        Document PR_SET_FP_MODE and PR_GET_FP_MODE
+
+perf_event_open.2
+    Vince Weaver
+        PERF_RECORD_SWITCH support
+            Linux 4.3 introduced two new record types for recording context
+            switches: PERF_RECORD_SWITCH and PERF_RECORD_SWITCH_CPU_WIDE.
+    Vince Weaver
+        Add PERF_SAMPLE_BRANCH_CALL branch sample type
+    Vince Weaver
+        PERF_SAMPLE_BRANCH_IND_JUMP branch_sample_type
+            Linux 4.2 added a new branch_sample_type: PERF_SAMPLE_BRANCH_IND_JUMP
+    Vince Weaver
+        Document PERF_RECORD_MISC_PROC_MAP_PARSE_TIMEOUT
+    Vince Weaver
+        Document sample_max_stack and /proc/sys/kernel/perf_event_max_stack
+            Linux 4.8 added a new sample_max_stack parameter, as well as
+            /proc/sys/kernel/perf_event_max_stack which limits it and a new
+            EOVERFLOW error return.
+    Dave Hansen
+        PERF_RECORD_LOST_SAMPLES record type
+            Linux 4.2 added a new record type: PERF_RECORD_LOST_SAMPLES
+            It is generated when hardware samples (currently only Intel PEBS)
+            are lost.
+
+ptrace.2
     Michael Kerrisk
-        Document /proc/PID/seccomp
-    Jann Horn
-        Document /proc/[pid]/task/[tid]/children
-            Document the /proc/[pid]/task/[tid]/children interface from
-            CRIU, and more importantly, document why it's usually not
-            a good interface.
+        Document PTRACE_SECCOMP_GET_FILTER
+    Michael Kerrisk
+        Document PTRACE_GET_THREAD_AREA and PTRACE_SET_THREAD_AREA
+
+namespaces.7
+    Michael Kerrisk  [Eric W. Biederman]
+        Document the NS_GET_USERNS and NS_GET_PARENT ioctl() operations
+
+sched.7
+    Michael Kerrisk  [Mike Galbraith]
+        Document the autogroup feature
+            Includes documenting autogroup nice value
+    Michael Kerrisk
+        Autogrouping breaks traditional semantics of nice in many cases
+            When autogrouping is enabled (the default in many distros)
+            there are many traditional use cases where the nice value
+            ceases to have any effect.
+    Michael Kerrisk
+        Add a subsection on nice value and group scheduling
 
 
 New and changed links
 ---------------------
 
-bswap_16.3
-bswap_32.3
-bswap_64.3
-        New link to new bswap.3
+killpg.2
+    Michael Kerrisk
+        New link to relocated killpg(3) page
+
+pkey_free.2
+    Michael Kerrisk
+        New link to new pkey_alloc(2) page
+
+pkey_mprotect.2
+    Michael Kerrisk
+        New link to mprotect(2)
+
+pthread_setattr_default_np.3
+    Michael Kerrisk
+        New link to new pthread_getattr_default_np.3
+
+strfromf.3
+    Wainer dos Santos Moschetta
+        New link to strfromd(3)
+
+strfroml.3
+    Wainer dos Santos Moschetta
+        New link to strfromd(3)
 
 
 Global changes
 --------------
 
 Various pages
-    Michael Kerrisk
-        Fix section ordering
-            Various pages had sections in an order different from
-            that prescribed in man-pages(7).
-
-Various pages
-    Michael Kerrisk  [Mike Frysinger]
-        Consistently use /proc/[pid] (not /proc/PID)
+    Michael kerrisk
+        Remove ancient libc4 and libc5 details
+            It's nearly 20 years now since Linux libc went away.
+            Remove some ancient details from the pages.
 
 Various pages
     Michael Kerrisk
-        Fix order of SEE ALSO entries
-            Entries should be ordered first by section, and then alphabetically
-            within the section.
+        Add cross references to new tmpfs(5) page
 
 Various pages
     Michael Kerrisk
-        Order ERRORS alphabetically
-
-Various pages
-    Michael Kerrisk
-        Remove section number from page self reference
-            Fix places where pages refer to the function that they describe
-            and include a section number in that reference. Such references
-            cause some HTML-rendering tools to create self-references in the
-            page.
-
-A few pages
-    Michael Kerrisk
-        Eliminate groff "cannot adjust line" warnings
+        Change section number from 2 to 3 in killpg() references
 
 
 Changes to individual pages
 ---------------------------
 
-pldd.1
-    Michael Kerrisk  [Carlos O'Donell]
-        Note gdb(1) command that can be used as a replacement for pldd
-            Taken from Carlos O'Donnell's suggestion in
-            https://sourceware.org/bugzilla/show_bug.cgi?id=18035#c2
-    Michael Kerrisk
-        BUGS: pldd has not worked since glibc 2.19
-
 accept.2
     Michael Kerrisk
-        Mention epoll(7) alongside poll()/select()
+        Remove editorializing comments about 'socklen_t'
     Michael Kerrisk
-        Demote discussion of DECNet to NOTES
-            DECNet ceased to be important long ago...
+        Simplify the discussion of 'socklen_t'
+            We don't really need to list the old OSes in this discussion.
 
 adjtimex.2
-    Nikola Forró
-        Fix kernel version references
+clock_getres.2
+gettimeofday.2
+    Michael Kerrisk
+        SEE ALSO: add hwclock(8)
+
+bind.2
+connect.2
+getpeername.2
+getsockname.2
+getsockopt.2
+    Michael Kerrisk
+        Replace discussion of 'socklen_t' with reference to accept(2)
+            The discussion of 'socklen_t' editorializes and is repeated
+            across several pages. Replace it with a reference to accept(2),
+            where some details about this type are provided.
+
+chmod.2
+    Michael Kerrisk
+        SEE ALSO: add chmod(1)
+
+chown.2
+    Michael Kerrisk
+        SEE ALSO: add chgrp(1) and chown(1)
 
 chroot.2
     Michael Kerrisk
-        Note user namespace requirements for CAP_SYS_CHROOT
+        SEE ALSO: add chroot(1)
 
 clone.2
-    Keno Fischer  [Josh Triplett]
-        Adjust syscall prototype and expand CLONE_SETTLS description
-    Michael Kerrisk  [Josh Triplett, Josh Triplett]
-        Document raw syscall interfaces on various other architectures
     Michael Kerrisk
-        Change types for 'ptid' and 'ctid' in syscall prototypes
-            These types changed from 'void *' to 'int *' back in Linux 3.8.
-    Michael Kerrisk
-        EINVAL is generated by glibc wrapper for NULL 'fn' or 'child_stack'
-            Clarify that this error is produced by the wrapper function, not
-            the underlying system call. In particular, the point is that the
-            raw system call can accommodate a NULL pointer for 'child_stack'.
-    Michael Kerrisk  [Elliott Hughes]
-        Make the implications of CLONE_FILES more explicit
-            If CLONE_FILES is not set, the duplicated FDs nevertheless share
-            file offset and status flags via the open file description.
-    Michael Kerrisk
-        Mention kcmp() under notes
+        The CLONE_*_SETTID operations store TID before return to user space
+            CLONE_PARENT_SETTID and CLONE_CHILD_SETTID store the new
+            TID before clone() returns to user space
 
 close.2
+    Michael Kerrisk  [Daniel Wagner]
+        Rework and greatly extend discussion of error handling
+            Further clarify that an error return should be used only
+            for diagnostic or remedial purposes.
     Michael Kerrisk
-        Add mention of the close-on-exec flag
+        Other UNIX implementations also close the FD, even if reporting an error
+            Looking at some historical source code suggests
+            that the "close() always closes regardless of error return"
+            behavior has a long history, predating even POSIX.1-1990.
     Michael Kerrisk
-        Clarify discussion noting that close() does not flush buffer cache
+        Note that future POSIX plans to require that the FD is closed on error
+            See http://austingroupbugs.net/view.php?id=529#c1200.
+    Michael Kerrisk
+        Clarify the variation in EINTR behavior per POSIX and other systems
 
-epoll_wait.2
-    Mike Crowe
-        Clarify that the timeout is measured against CLOCK_MONOTONIC
+fallocate.2
+    Darrick J. Wong
+        Document behavior with shared blocks
+            Note that FALLOC_FL_UNSHARE may use CoW to unshare blocks to
+            guarantee that a disk write won't fail with ENOSPC.
 
-execve.2
-    Michael Kerrisk
-        Mention use of 'environ' to access environment list
-    Michael Kerrisk
-        Note that real UID, real GID, and supplementary GIDs are unchanged
-
-fanotify_init.2
+fanotify_mark.2
     Heinrich Schuchardt
-        Update BUGS information
+        Mention FAN_Q_OVERFLOW
+            To receive overflow events it is necessary to set this bit
+            in fanotify_mark().
 
 fcntl.2
     Michael Kerrisk
-        Note an important detail of F_SETOWN permission rules for signals
-            F_SETOWN records the caller's credentials at the time of
-            the fcntl() call, and it is these saved credentials that
-            are used for subsequent permission checks.
+        F_GETPIPE_SZ allocates next power-of-2 multiple of requested size
+            Add some detail about current implementation, since this helps
+            the user understand the effect of the user pipe limits added in
+            Linux 4.5 (described in pipe(7)).
     Michael Kerrisk
-        Make the description of the effect of close-on-exec a little clearer
-    Michael Kerrisk
-        Clarify that F_GETFD and F_GETFL return flags via the function result
+        Add EPERM that occurs for F_SETPIPE_SZ when user pipe limit is reached
 
-fork.2
-    Michael Kerrisk
-        PID of new process also does not match any existing session ID
+fideduperange.2
+    Darrick J. Wong  [Omar Sandoval]
+        Fix the discussion of maximum sizes
+            Fix the discussion of the limitations on the dest_count and
+            src_length parameters to the fideduperange ioctl() to reflect
+            what's actually in the kernel.
 
 fsync.2
     Michael Kerrisk
-        SEE ALSO: add pwritev(2)
-            Since Linux 4.7, pwritev() has flags related to I/O
-            integrity completion.
-
-getdomainname.2
+        SEE ALSO: add fileno(3)
+            fileno(3) is useful if one is combining fflush(3)/fclose(3)
+            and fsync(2).
     Michael Kerrisk
-        Note user namespace requirements for CAP_SYS_ADMIN
+        SEE ALSO: add fflush(3)
 
 getgroups.2
-    Michael Kerrisk
-        Note user namespace requirements for CAP_SETGID
+    Andrew Clayton
+        FTM requirements fix for setgroups(2)
 
 gethostname.2
     Michael Kerrisk
-        Note user namespace requirements for CAP_SYS_ADMIN
+        SEE ALSO: add hostname(1)
+
+get_mempolicy.2
+    Michael Kerrisk
+        Note that 'addr' must be NULL when 'flags' is 0
+
+getpriority.2
+    Michael Kerrisk
+        Warn that autogrouping voids the effect of 'nice' in many cases
+            Refer the reader to sched(7) for the details.
+    Michael Kerrisk
+        Expand discussion of getpriority() return value
+    Michael Kerrisk
+        The nice value supplied to setpriority() is clamped
+            Note that the nice value supplied to setpriority() is clamped
+            to the permitted range.
+    Michael Kerrisk
+        Improve description of setpriority() return value
+
+getpriority.2
+sched.7
+    Michael Kerrisk
+        Move nice value details from getpriority(2) to sched(7)
+            Centralizing these details in sched(7) is more logical.
+
+getrandom.2
+random.4
+    Michael Kerrisk
+        Consolidate and improve discussion on usage of randomness
+            Currently, recommendations on how to consume randomness are
+            spread across both getrandom(2) and random(4) and the general
+            opinion seems to be that the text in getrandom(2) does a
+            somewhat better job. Consolidate the discussion to a single
+            page (getrandom(2)) and address some of the concerns
+            expressed about the existing text in random(4).
+            [Some of this text ultimately made its way into the new
+            random(7) page.]
+
+getrandom.2
+    Michael Kerrisk
+        Remove material incorporated into random(7)
+    Michael Kerrisk
+        Note advantages of fact that getrandom() doesn't use file descriptors
+    Michael Kerrisk
+        Clarify that getrandom() is not "reading" from /dev/{random,urandom}
 
 getrlimit.2
     Michael Kerrisk
-        Note user namespace semantics for CAP_SYS_RESOURCE
+        Refer to sched(7) in discussion of RLIMIT_RTPRIO and RLIMIT_RTTIME
+    Michael Kerrisk
+        Describe the range of the RLIMIT_NICE limit
+    Michael Kerrisk
+        Refer to sched(7) in the discussion of RLIMIT_NICE
+    Michael Kerrisk
+        SEE ALSO: add credentials(7)
 
-getsid.2
-    Michael Kerrisk
-        Rework description to be somewhat clearer
-    Michael Kerrisk
-        Correct the definition of "session ID"
-
-getunwind.2
-    Michael Kerrisk
-        Simplify text referring to vdso(7)
-            The detail given here is redundant, since this info is also
-            in vdso(7).
-
-kcmp.2
-    Michael Kerrisk
-        Add an example program
+ioctl_ficlonerange.2
+ioctl_fideduperange.2
+    Darrick J. Wong
+        Clarify the behavior of the FIDEDUPERANGE ioctl
 
 kill.2
     Michael Kerrisk
-        Note the user namespace requirement for CAP_KILL
+        SEE ALSO: add kill(1)
 
-killpg.2
+mbind.2
+    Michael Kerrisk  [Christoph Lameter]
+        Memory policy is a per-thread attribute, not a per-process attribute
+
+mbind.2
+set_mempolicy.2
+    Piotr Kwapulinski  [Christoph Lameter, Michael Kerrisk]
+        Add MPOL_LOCAL NUMA memory policy documentation
+
+mount.2
     Michael Kerrisk
-        Refer reader to kill(2) for signal permission rules
+        SEE ALSO: add mountpoint(1)
 
-mlock.2
-    Sebastian Andrzej Siewior
-        Document that fork() after mlock() may be a bad idea in a RT process
-
-mmap.2
-    Jann Horn
-        Describe treatment of 'offset' for MAP_ANONYMOUS
-    Michael Kerrisk  [Siward de Groot]
-        Small improvement to description of MAP_SHARED
-            See https://sourceware.org/bugzilla/show_bug.cgi?id=6887
-
-msgctl.2
-msgget.2
-msgop.2
-semctl.2
-semget.2
-semop.2
-shmctl.2
-shmget.2
-shmop.2
+mprotect.2
     Michael Kerrisk
-        Note the user namespace requirements for CAP_IPC_OWNER
+        CONFORMING TO: note that pkey_mprotect() is Linux-specific
+
+nice.2
+    Michael Kerrisk
+        Warn that autogrouping voids the effect of 'nice' in many cases
+    Michael Kerrisk
+        CONFORMING TO: Remove an ancient SVr4 detail on errno values
+    Michael Kerrisk
+        Rework discussion of nice() return value and standards conformance
+            Make the text a little clearer. In particular, clarify that the
+            raw system call (still) returns 0 on success.
+    Michael Kerrisk
+        Clarify the range of the nice value, and note that it is clamped
+    Michael Kerrisk
+        Add mention of RLIMIT_NICE
+    Michael Kerrisk
+        Move discussion of handling the -1 success return to RETURN VALUE
+            This detail was rather hidden in NOTES. Also, rework the text
+            a little.
+    Michael Kerrisk
+        Clarify that nice() changes the nice value of the calling *thread*
+    Michael Kerrisk
+        Add "C library/kernel differences" subsection heading
+    Michael Kerrisk
+        Add reference to sched(7) for further details on the nice value
 
 open.2
     Michael Kerrisk
-        Clarify user namespace capability requirements for O_NOATIME
+        ubifs supports O_TMPFILE starting with Linux 4.9
     Michael Kerrisk
-        NOTES: kcmp() can be used to test if two FDs refer to the same OFD
+        Document ENOMEM that occurs when opening FIFO because of pipe hard limit
+
+perf_event_open.2
+    Vince Weaver
+        Add cycles field in LBR records
+            Linux 4.3 added a cycles field to the PERF_SAMPLE_BRANCH_STACK
+            last branch records.
+    Vince Weaver
+        Update time_shift sample code
+            Linux 4.3 improved the accuracy of the clock/ns conversion routines.
     Michael Kerrisk
-        F2FS support for O_TMPFILE was added in Linux 3.16
+        Clarify the use of signals for capturing overflow events
+
+pipe.2
     Michael Kerrisk
-        Clarify the rules about how the group ID of a new file is determined
+        Add ENFILE error for user pipe hard limit reached
 
 prctl.2
+    Eugene Syromyatnikov
+        Some additional details regarding the PR_GET_UNALIGNED operation
+    Eugene Syromyatnikov
+        Note the output buffer size for PR_GET_TID_ADDRESS operation on x32/n32
     Michael Kerrisk
-        Refer to proc(5) for effects of dumpability on ownership of /proc/PID/*
-    Michael Kerrisk
-        ERRORS: Add EACCES error for PR_SET_SECCOMP-SECCOMP_MODE_FILTER
-    Michael Kerrisk
-        Simplify list of cases where "dumpable" attribute is reset
-    Michael Kerrisk
-        Note user namespace requirements for PR_CAPBSET_DROP CAP_SETPCAP
+        Remove numeric definitions of PR_FP_MODE_FR and PR_FP_MODE_FRE bits
 
-readlink.2
-    Michael Kerrisk  [Ursache Vladimir]
-        Make example program handle links that report a size of zero
-            Some "magic" symlinks created by the kernel (e.g., those under
-            /proc and /sys) report 'st_size' as zero. Modify the example
-            program to handle that possibility.
-    Michael Kerrisk
-        Emphasize that truncation of returned buffer generates no error
+ptrace.2
+    Keno Fischer
+        Document the behavior of PTRACE_SYSEMU stops
+    Keno Fischer
+        Expand documentation PTRACE_EVENT_SECCOMP traps
+            In Linux 4.8, the order of PTRACE_EVENT_SECCOMP and
+            syscall-entry-stops was reversed.  Document both behaviors and
+            their interaction with the various forms of restart.
 
-readv.2
-    Michael Kerrisk  [Christoph Hellwig]
-        Clarify that RWF_DSYNC and RWF_SYNC apply only to data being written
-    Michael Kerrisk
-        Add preadv2() and pwritev2() to NAME line
+quotactl.2
+    Eugene Syromyatnikov
+        Describe Q_XQUOTASYNC, which is present but no-op in recent kernels
 
 reboot.2
-    Michael Kerrisk
-        Note user namespace requirements around CAP_SYS_BOOT
+    Wang Long
+        Note errors for invalid commands inside a PID namespace
 
-rename.2
-    Michael Kerrisk  [Tim Savannah]
-        Clarify that ERRORS may cause rename to fail (not to be nonatomic)
-
-sched_setaffinity.2
+sched_setattr.2
     Michael Kerrisk
-        Note user namespace requirements for CAP_SYS_NICE
+        Fix cross reference for further info on the nice value
+            The information moved from getpriority(2) to sched(7).
+
+sched_setscheduler.2
+    Michael Kerrisk  [Daniel Berrange]
+        Mention SCHED_DEADLINE
+            Give the reader a clue that there is another policy
+            available that can't be set via sched_setscheduler(2).
 
 seccomp.2
+    Jann Horn
+        Document changed interaction with ptrace
+            Before kernel 4.8, the seccomp check will not be run again
+            after the tracer is notified. Fixed in kernel 4.9.
     Michael Kerrisk
-        CAP_SYS_ADMIN is required only in caller's user namespace
+        NOTES: mention ptrace(PTRACE_SECCOMP_GET_FILTER) to dump seccomp filters
 
-select_tut.2
-    Peter Wu
-        Fix various issues in example program
-
-seteuid.2
+set_mempolicy.2
     Michael Kerrisk
-        Note user namespace requirements for CAP_SETUID and CAP_SETGID
-
-setgid.2
-    Michael Kerrisk
-        Note user namespace requirements for CAP_SETGID
-
-setpgid.2
-    Michael Kerrisk
-        Add a reference to credentials(7)
-
-setpgid.2
-setsid.2
-    Michael Kerrisk
-        Relocate some text on sessions and sessions leaders
-            Some text that was in setpgid(2) is better placed in setsid(2).
-
-setresuid.2
-    Michael Kerrisk
-        Note user namespace requirements for CAP_SETUID
-
-setreuid.2
-    Michael Kerrisk
-        Note user namespace requirements for CAP_SETUID and CAP_SETGID
+        Reformat list of modes
 
 setsid.2
     Michael Kerrisk
-        Refer to credentials(7) for details for details on controlling terminal
-            Refer to credentials(7) for details of how a session obtains
-            a controlling terminal.
-
-set_thread_area.2
+        Improve wording of text on calling setsid() after fork()+_exit()
     Michael Kerrisk
-        Add get_thread_area() to NAME
+        SEE ALSO: add sched(7)
+            List sched(7), because setsid(2) is part of the machinery
+            of autogrouping.
 
-setuid.2
+sigaction.2
+    Dave Hansen
+        Further documentation of SEGV_PKUERR
+
+signalfd.2
     Michael Kerrisk
-        Note user namespace requirements for CAP_SETUID
+        Document ssi_addr_lsb field of signalfd_siginfo
 
-sigprocmask.2
-    Keno Fischer
-        Expand/clarify libc/kernel sigset_t difference
-
-stat.2
-    Michael Kerrisk  [Ursache Vladimir, Mats Wichmann]
-        Improve discussion of 'st_size' for /proc and /sys files
+symlink.2
     Michael Kerrisk
-        _BSD_SOURCE and _SVID_SOURCE no longer expose nanosecond timestamps
+        SEE ALSO: add namei(1)
 
-umask.2
+sync_file_range.2
     Michael Kerrisk
-        Provide a rationale for the existence of /proc/PID/status 'Umask' field
+        Fix description for ESPIPE error
+            A file descriptor can't refer to a symbolic link.
+
+syscalls.2
+    Michael Kerrisk
+        Add pkey_alloc(), pkey_free(), and pkey_mprotect()
+            New system calls in Linux 4.9.
+    Michael Kerrisk
+        Add ppc_swapcontext(2)
+
+timer_create.2
+    Michael Kerrisk
+        Document CLOCK_BOOTTIME
+    Michael Kerrisk
+        Document CLOCK_REALTIME_ALARM and CLOCK_BOOTTIME_ALARM
+
+timerfd_create.2
+    Michael Kerrisk
+        Document CLOCK_BOOTTIME, CLOCK_REALTIME_ALARM, and CLOCK_BOOTTIME_ALARM
+    Michael Kerrisk
+        Document TFD_TIMER_CANCEL_ON_SET
+    Michael Kerrisk
+        Rework discussion on relative and absolute timers
+
+unlink.2
+    Michael Kerrisk
+        SEE ALSO: add unlink(2)
+
+utime.2
+utimensat.2
+    Michael Kerrisk
+        SEE ALSO: add touch(1)
 
 wait.2
     Michael Kerrisk
-        Remove erroneous statement that waitpid() is implemented via wait4()
-            There is a fallback to wait4(), but only if the kernel does
-            not provide a waitpid() system call.
+        On some architectures, waitpid() is a wrapper that calls wait4().
 
-bindresvport.3
-rcmd.3
-ip.7
+atof.3
+    Wainer dos Santos Moschetta
+        SEE ALSO: add strfromd(3)
+
+ctime.3
     Michael Kerrisk
-        Note user namespace requirements for CAP_NET_BIND_SERVICE
-
-byteorder.3
+        Add ERRORS section
     Michael Kerrisk
-        SEE ALSO: add bswap(3)
+        RETURN VALUE: describe return values more explicitly
 
-dlopen.3
+errno.3
+    Michael Kerrisk  [Igor Liferenko]
+        Add glibc error text for EILSEQ
+
+fclose.3
+fflush.3
     Michael Kerrisk
-        dlmopen() is still broken in glibc 2.24
-
-endian.3
-    Michael Kerrisk
-        SEE ALSO: add bswap(3)
-
-ffs.3
-    Michael Kerrisk  [Stefan Tauner]
-        Correct feature test macro requirements
-
-fmemopen.3
-    Michael Kerrisk  [Rich Felker]
-        Remove bogus suggestion to use setbuffer()
+        SEE ALSO: add fileno(2)
 
 getlogin.3
     Michael Kerrisk
-        Update feature test macro requirements for cuserid()
-
-getumask.3
+        Remove deprecated _REENTRANT from FTM requirements for getlogin_r()
     Michael Kerrisk
-        Note that getumask() is still unavailable in glibc 2.24
+        SEE ALSO: add logname(1)
+
+isalpha.3
     Michael Kerrisk
-        Point to umask(2) for a thread-safe way to discover process's umask
+        Note circumstances where 'c' must be cast to 'unsigned char'
 
-mkstemp.3
-    Quentin Rameau
-        Fix _POSIX_C_SOURCE value for mkstemp()
-            The correct _POSIX_C_SOURCE value has always been 200809L,
-            not 200112L.
-
-pthread_join.3
-    Michael Kerrisk  [Mats Wichmann]
-        Note that the caller might do clean up after joining with a thread
-    Michael Kerrisk  [王守堰]
-        Clarify use of 'retval' pointer
-
-resolver.3
-    Ray Bellis
-        Correct arguments to res_ninit(res_state statep)
-
-strverscmp.3
+killpg.3
     Michael Kerrisk
-        Add an example program
+        Move killpg.2 from section to to section 3
 
+mallopt.3
+    Michael Kerrisk  [Siddhesh Poyarekar]
+        Document 0 as default value of M_ARENA_MAX and explain its meaning
+    Michael Kerrisk
+        Improve description of M_ARENA_TEST
+    Michael Kerrisk
+        Document default value for M_ARENA_TEST
+    Michael Kerrisk
+        Note default value of M_PERTURB
+
+mbsnrtowcs.3
+    Michael Kerrisk  [Igor Liferenko]
+        Note behavior of mbsnrtowcs() for an incomplete character
+            Note the behavior of mbsnrtowcs() when an incomplete character
+            is found at end of the input buffer.
+
+mbstowcs.3
 wcstombs.3
     Michael Kerrisk  [Igor Liferenko]
-        wcsrtombs() does not provide thread-safe interface to same functionality
-            See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741360
+        Improve language relating to "initial state"
+            See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=839705
 
-core.5
-    Mike Frysinger  [Michael Kerrisk]
-       Add more details for output paths and the crash handler
-            People sometimes assume that the crash handler runs in the same
-            context as the crashing process.  They would be incorrect :).
+mbstowcs.3
+    Michael Kerrisk  [Igor Liferenko]
+        Add missing include to example program
+            See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=845172
+
+mq_close.3
+    Michael Kerrisk
+        DESCRIPTION: add reference to mq_notify(3)
+
+mq_open.3
+    Eugene Syromyatnikov
+        Clarification regarding usage of mq_flags attribute in mq_open()
+
+mq_receive.3
+mq_send.3
+    Eugene Syromyatnikov
+        Clarification regarding reasons behind EBADF
+
+printf.3
+    Wainer dos Santos Moschetta
+        SEE ALSO: add strfromd(3)
+
+pthread_attr_init.3
+    Michael Kerrisk
+        SEE ALSO: add pthread_setattr_default_np(3)
+
+pthread_create.3
+    Michael Kerrisk
+        SEE ALSO: add pthread_setattr_default_np(3)
+
+ptsname.3
+    Michael Kerrisk
+        Note that ptsname_r() is proposed for future inclusion in POSIX.1
+    Michael Kerrisk
+        CONFORMING TO:: clarify that only ptsname() is standardized (so far)
+
+remainder.3
+    Michael Kerrisk
+        Note fix to remainder(nan(""), 0) handling
+            The bug https://www.sourceware.org/bugzilla/show_bug.cgi?id=6779
+            has been fixed in glibc 2.15.
+    Michael Kerrisk
+        Document fixes for EDOM handling for range errors
+            The bug http://sources.redhat.com/bugzilla/show_bug.cgi?id=6783
+            was fixed in glibc 2.15.
+
+setjmp.3
+    Michael Kerrisk
+        _BSD_SOURCE must be *explicitly* defined to get BSD setjmp() semantics
+
+strtod.3
+    Wainer dos Santos Moschetta
+        SEE ALSO: add strfromd(3)
+
+tgamma.3
+    Michael Kerrisk
+        Document fixes to give ERANGE for underflow range error
+            The bug https://www.sourceware.org/bugzilla/show_bug.cgi?id=6810
+            was fixed in glibc 2.19.
+
+timegm.3
+    Michael Kerrisk
+        Add ERRORS section
+    Michael Kerrisk  [Vincent Lefevre]
+        Add RETURN VALUE section
+
+tmpnam.3
+    Michael Kerrisk
+        Properly document tmpnam_r(3)
+
+toupper.3
+    Michael Kerrisk
+        Note circumstances where 'c' must be cast to 'unsigned char'
+
+ttyname.3
+    Michael Kerrisk
+        SEE ALSO: add tty(1)
+
+console_ioctl.4
+    Michael Kerrisk
+        Add brief descriptive text for KDGKBMODE modes
+    Miroslav Koskar
+        Add K_OFF keyboard mode
+
+random.4
+    Michael Kerrisk
+        Add reference to new random(7) page
+    Michael Kerrisk
+        Rework formatting of /proc interfaces
+            Make the information easier to parse by formatting the file
+            descriptions as hanging lists. No significant content changes.
+    Nikos Mavrogiannopoulos  [Laurent Georget]
+        Provide a more accurate description of /dev/urandom
+            This documents the "property" of /dev/urandom of being able to
+            serve numbers prior to pool being initialized, and removes any
+            suggested usages of /dev/random which are disputable
+            (i.e., one-time pad).  Document the fact /dev/random is only
+            suitable for applications which can afford indeterminate delays
+            since very few applications can do so.  Smooth the alarming
+            language about a theoretical attack, and mention that its
+            security depends on the cryptographic primitives used by the
+            kernel, as well as the total entropy gathered.
+    Michael Kerrisk  [Laurent Georget, Theodore Ts'o]
+        Improve discussion of /dev/urandom, blocking reads, and signals
+            The text currently states that O_NONBLOCK has no effect for
+            /dev/urandom, which is true.  It also says that reads from
+            /dev/urandom are nonblocking.  This is at the least confusing.
+            If one attempts large reads (say 10MB) from /dev/urandom
+            there is an appreciable delay, and interruption by a signal
+            handler will result in a short read. Amend the text to
+            reflect this.
+
+elf.5
+    Mike Frysinger
+        Add subsection headers at major points
+            The current pages dumps all the content into one big DESCRIPTION
+            with no real visual break up between logically independent
+            sections.  Add some subsection headers to make it easier to
+            read and scan.
+    Mike Frysinger
+        Document notes
+            Document the Elf{32,64}_Nhdr structure, the sections/segments that
+            contain notes, and how to interpret them.  I've been lazy and only
+            included the GNU extensions here, especially as others are not
+            defined in the elf.h header file as shipped by glibc.
+
+filesystems.5
+    Michael Kerrisk
+        SEE ALSO: add fuse(4)
 
 proc.5
-    Mike Frysinger
-        Clarify the root symlink and mount namespaces
-            If the target process is in a different mount namespace, the root
-            symlink actually shows that view of the filesystem.
-    Michael Kerrisk  [Mike Frysinger]
-        Expand discussion of /proc/[pid]/root
-            Add a shell example showing that /proc/[pid]/root is more
-            than a symlink. Based on an example provided by Mike Frysinger
-            in an earlier commit message.
+    Dave Hansen
+        Describe new ProtectionKey 'smaps' field
     Michael Kerrisk
-        Explain rules determining ownership of /proc/PID/* files
-            Describe the effect of the "dumpable" attribute on ownership
-            of /proc/PID files.
+        Add example ProtectionKey output for 'smaps' file
     Michael Kerrisk
-        Note effect of 'suid_dumpable' on ownership of /proc/PID files
+        Add pointers to sched(7) for autogroup files
+            sched(7) describes /proc/sys/kernel/sched_autogroup_enabled
+            and /proc/PID/autogroup.
     Michael Kerrisk
-        Refer to ptrace(2) for info on effect of suid_dumpable on ptraceability
+        Add /proc/sys/fs/pipe-user-pages-{hard,soft} entries
     Michael Kerrisk
-        Add reference to core(5) in discussion of 'suid_dumpable'
+        Improve description of the KernelPageSize and MMUPageSize 'smaps' fields
     Michael Kerrisk
-        Note that 'suid_dumpable' mode 1 is insecure
+        Rework 'smaps' ProtectionKey text and add some details
     Michael Kerrisk
-        Document /proc/meminfo '+ShmemHugePages' and 'ShmemPmdMapped' fields
+        Mention lslocks(8) in discussion of /proc/locks
     Michael Kerrisk
-        Document /proc/PID/status 'RssAnon', 'RssFile', and 'RssShmem' fields
+        Describe Shmem field of /proc/meinfo
     Michael Kerrisk
-        Document /proc/PID/status 'HugetlbPages' field
-    Michael Kerrisk  [Zefram]
-        Clarify that /proc/PID/statm 'shared' field counts *resident* pages
-            See https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=741360
+        Rework 'smaps' VmFlags text, and add kernel version and example output
+
+proc.5
+pipe.7
     Michael Kerrisk
-        Add reference to umask(2) in discussion of /proc/PID/status 'Umask'
+        Move /proc/sys/fs/pipe-max-size content from proc(5) to pipe(7)
+
+resolv.conf.5
+    Carlos O'Donell  [Florian Weimer]
+        Timeout does not map to resolver API calls
+
+utmp.5
     Michael Kerrisk
-        Clarify user namespace requirements for /proc/sys/fs/protected_hardlinks
-    Michael Kerrisk
-        Note changes to config option governing /proc/[pid]/task/[tid]/children
-    Michael Kerrisk
-        Clarify description of /proc/PID/statm 'lib' and 'dt' fields
-            These fields are always zero since Linux 2.6.
-    Namhyung Kim  [Petr Cermak]
-        Add description of CLEAR_REFS_MM_HIWATER_RSS
-    Michael Kerrisk
-        Update example VM values in /proc/PID/status
+        SEE ALSO: add users(1)
 
 capabilities.7
     Michael Kerrisk
-        Add note about nosuid to file capabilities section
+        CAP_SYS_ADMIN governs ptrace(2) PTRACE_SECCOMP_GET_FILTER
     Michael Kerrisk
-        SEE ALSO: add proc(5)
-    Michael Kerrisk
-        SEE ALSO: add setsid(2) and setpgid(2)
+        CAP_SYS_ADMIN allows privileged ioctl() operations on /dev/random
 
-glob.7
-    Michael Kerrisk  [Arnaud Gaillard]
-        Clarify that syntactically incorrect patterns are left unchanged
-
-packet.7
+cgroups.7
     Michael Kerrisk
-        Clarify user namespace requirements for CAP_NET_RAW
+        Add details on 'cpu' CFS bandwidth control
+
+credentials.7
+    Michael Kerrisk
+        SEE ALSO: add setpriv(1)
+    Michael Kerrisk
+        SEE ALSO: add shadow(5)
+
+feature_test_macros.7
+    Michael Kerrisk  [Zack Weinberg]
+        Note that _REENTRANT and _THREAD_SAFE are now deprecated
+    Michael Kerrisk
+        Note that "cc -pthread" defines _REENTRANT
+
+inotify.7
+    Michael Kerrisk
+        Note a subtlety of event generation when monitoring a directory
+
+libc.7
+    Michael Kerrisk
+        Add a note on why glibc 2.x uses the soname libc.so.6
+    Michael Kerrisk
+        Add a few historical details on Linux libc4 and libc5
+            Just for historical interest. Details taken from
+            http://www.linux-m68k.org/faq/glibcinfo.html.
+
+mdoc.7
+    Michael Kerrisk
+        Add a cross-reference to groff_mdoc(7)
+
+mount_namespaces.7
+    Michael Kerrisk
+        SEE ALSO: add user_namespaces(7)
+
+mount_namespaces.7
+user_namespaces.7
+    Michael Kerrisk
+        Migrate subsection on mount restrictions to mount_namespaces(7)
+            This section material in the user_namespaces(7) page was written
+            before the creation of the mount_namespaces(7) manual page.
+            Nowadays, this material properly belongs in the newer page.
+
+netlink.7
+    Dmitry V. Levin
+        Document NETLINK_INET_DIAG rename to NETLINK_SOCK_DIAG
+    Dmitry V. Levin
+        Add references to sock_diag(7)
+
+pid_namespaces.7
+    Michael Kerrisk
+        Refer to namespaces(7) for information about NS_GET_PARENT
 
 pipe.7
-    Michael Kerrisk  [Patrick McLean]
-        Document FIONREAD
+    Michael Kerrisk, Vegard Nossum  [Vegard Nossum]
+        Document /proc files controlling memory usage by pipes
+            Document /proc/sys/fs/pipe-max-size and
+            /proc/sys/fs/pipe-user-pages-{soft,hard}.
+    Michael Kerrisk
+        Document pre-Linux 4.9 bugs in pipe limit checking
 
-raw.7
+sched.7
     Michael Kerrisk
-        Clarify user namespace requirements for CAP_NET_RAW
-            Also remove mention of UID 0 as a method or creating
-            a raw socket. As far as I can tell from reading the
-            kernel source (net/ipv4/af_inet.c), this is not true.
+        Add a new introductory paragraph describing the nice value
+    Michael Kerrisk
+        Add more precise details on CFS's treatment of the nice value
+    Michael Kerrisk
+        Mention RLIMIT_NICE in the discussion of the nice value
+    Michael Kerrisk
+        NOTES: mention cgroups CPU controller
+    Michael Kerrisk
+        Add introductory sentence mentioning CFS scheduler
+    Michael Kerrisk
+        Add nice(2), getpriority(2), and setpriority(2) to API list
+    Michael Kerrisk
+        Make it clearer that SCHED_OTHER is always scheduled below real-time
+    Michael Kerrisk
+        Give the page a more generic NAME
+            The page isn't just about APIs.
 
-socket.7
+standards.7
     Michael Kerrisk
-        SIOCSPGRP: refer to fcntl(2) F_SETOWN for correct permission rules
-            The permission rules described for SIOCCPGRP are wrong. Rather
-            than repeat the rules here, just refer the reader to fcntl(2),
-            where the rules are described for F_SETOWN.
+        POSIX.1-2016 (POSIX.1-2008 TC2) has now been released
 
-unix.7
-    Michael Kerrisk  [Laurent Georget, Ivan Kharpalev]
-        Remove mention of recvmsg() from discussion of EPIPE error
-            See https://bugzilla.kernel.org/show_bug.cgi?id=137351
+symlink.7
+    Michael Kerrisk
+        SEE ALSO: add namei(1)
 
-ld.so.8
-    Michael Kerrisk
-        Expand description of LD_DEBUG
-            Provide a list of the categories, and note that multiple
-            categories can be specified.
-    Michael Kerrisk
-        Add glibc version for LD_USE_LOAD_BIAS
-    Michael Kerrisk
-        Clarify text describing whether secure-mode programs preload libraries
-    Michael Kerrisk
-        Remove discussion of environment variables understood by libc5
-            libc5 disappeared long ago, so cease cluttering up this page
-            with those ancient details. Thus, remove discussion of the
-            following environment variables: LD_AOUT_LIBRARY_PATH,
-            LD_AOUT_PRELOAD, LD_KEEPDIR, LD_NOWARN, and LDD_ARGV0.
-    Michael Kerrisk
-        Remove text with ancient libc4 and Linux libc details
-    Michael Kerrisk
-        Remove mention of "ELF only"
-            Drawing a distinction between ELF-only features versus a,out
-            ceased to be relevant long ago, so cluttering the page
-            with "ELF-only" serves no purpose.
+uri.7
+    Jakub Wilk
+        Use "example.com" as example domain
 
+user_namespaces.7
+    Michael Kerrisk
+        Add reference to namespaces(7) for NS_GET_USERNS operation
+    Michael Kerrisk
+        Add reference to namespaces(7) for NS_GET_PARENT operation

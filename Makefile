@@ -1,5 +1,5 @@
 PKG_NAME := man-pages
-URL := https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.08.tar.xz
-ARCHIVES :=
+URL := https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.09.tar.xz
+
 
 include ../common/Makefile.common
