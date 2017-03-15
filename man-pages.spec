@@ -4,7 +4,7 @@
 #
 Name     : man-pages
 Version  : 4.10
-Release  : 32
+Release  : 33
 URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.10.tar.xz
 Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.10.tar.xz
 Summary  : No detailed summary available
@@ -35,7 +35,7 @@ doc components for the man-pages package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1489586227
+export SOURCE_DATE_EPOCH=1489588482
 make V=1  %{?_smp_mflags}
 
 %check
@@ -46,7 +46,7 @@ export no_proxy=localhost
 make check-groff-warnings
 
 %install
-export SOURCE_DATE_EPOCH=1489586227
+export SOURCE_DATE_EPOCH=1489588482
 rm -rf %{buildroot}
 %make_install
 
@@ -77,3 +77,10 @@ rm -rf %{buildroot}
 %exclude /usr/share/man/man2/setxattr.2
 %exclude /usr/share/man/man3/getspnam.3
 %exclude /usr/share/man/man5/passwd.5
+%exclude /usr/share/man/man7/keyrings.7
+%exclude /usr/share/man/man7/persistent-keyring.7
+%exclude /usr/share/man/man7/process-keyring.7
+%exclude /usr/share/man/man7/session-keyring.7
+%exclude /usr/share/man/man7/thread-keyring.7
+%exclude /usr/share/man/man7/user-keyring.7
+%exclude /usr/share/man/man7/user-session-keyring.7

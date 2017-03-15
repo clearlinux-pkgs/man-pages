@@ -17,3 +17,10 @@
 # to avoid conflicts with shadow
 /usr/share/man/man5/passwd.5
 /usr/share/man/man3/getspnam.3
+/usr/share/man/man7/process-keyring.7
+/usr/share/man/man7/user-keyring.7
+/usr/share/man/man7/thread-keyring.7
+/usr/share/man/man7/persistent-keyring.7
+/usr/share/man/man7/session-keyring.7
+/usr/share/man/man7/user-session-keyring.7
+/usr/share/man/man7/keyrings.7
