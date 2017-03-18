@@ -4,13 +4,14 @@
 #
 Name     : man-pages
 Version  : 4.10
-Release  : 33
+Release  : 34
 URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.10.tar.xz
 Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.10.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : Distributable
 Requires: man-pages-doc
+Requires: man-db
 BuildRequires : groff
 BuildRequires : man-db
 BuildRequires : util-linux
@@ -35,7 +36,7 @@ doc components for the man-pages package.
 
 %build
 export LANG=C
-export SOURCE_DATE_EPOCH=1489588482
+export SOURCE_DATE_EPOCH=1489861506
 make V=1  %{?_smp_mflags}
 
 %check
@@ -46,7 +47,7 @@ export no_proxy=localhost
 make check-groff-warnings
 
 %install
-export SOURCE_DATE_EPOCH=1489588482
+export SOURCE_DATE_EPOCH=1489861506
 rm -rf %{buildroot}
 %make_install
 
