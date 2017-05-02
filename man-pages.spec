@@ -4,7 +4,7 @@
 #
 Name     : man-pages
 Version  : 4.10
-Release  : 34
+Release  : 35
 URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.10.tar.xz
 Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.10.tar.xz
 Summary  : No detailed summary available
