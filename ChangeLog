@@ -1,6 +1,6 @@
-==================== Changes in man-pages-4.11 ====================
+==================== Changes in man-pages-4.12 ====================
 
-Released: 2017-05-03, Baden, Switzerland
+Released: 2017-07-13, London
 
 
 Contributors
@@ -10,548 +10,481 @@ The following people contributed patches/fixes or (noted in brackets
 in the changelog below) reports, notes, and ideas that have been
 incorporated in changes in this release:
 
-Alexander Alemayhu <alexander@alemayhu.com>
-Alexander Miller <alex.miller@gmx.de>
-Andrea Arcangeli <aarcange@redhat.com>
-Andreas Dilger <adilger@dilger.ca>
-Andrew Clayton <andrew@digital-domain.net>
-Arnd Bergmann <arnd@arndb.de>
-Ben Dog <wsy2220@gmail.com>
+Alex Henrie <alexhenrie24@gmail.com>
+Andi Kleen <andi-bz.firstfloor.org>
+Arjun Shankar <arjun.is@lostca.se>
+Brad Bendily <bendily@gmail.com>
+Cameron Wright <wright18@uw.edu>
 Carlos O'Donell <carlos@redhat.com>
-Chema Gonzalez <chema@google.com>
-Christian Brauner <christian.brauner@ubuntu.com>
-Cyril Hrubis <chrubis@suse.cz>
-David Howells <dhowells@redhat.com>
-Dmitry V. Levin <ldv@altlinux.org>
-Florian Weimer <fweimer@redhat.com>
-Francois Saint-Jacques <fsaintjacques@gmail.com>
-Frank Theile
-Georg Sauthoff <mail@georg.so>
-Ian Abbott <abbotti@mev.co.uk>
+Darrick J. Wong <darrick.wong@oracle.com>
+David Lewis <davlewi3@cisco.com>
+DJ Delorie <dj@delorie.com>
+Douglas Caetano dos Santos <douglascs@taghos.com.br>
+Dr. Tobias Quathamer <toddy@debian.org>
+Eric Biggers <ebiggers@google.com>
+Ferdinand Thiessen <f.thiessen@gmx.de>
+G. Branden Robinson <g.branden.robinson@gmail.com>
+Heinrich Schuchardt <xypron.glpk@gmx.de>
+Henry Bent <henry.r.bent@gmail.com>
 Jakub Wilk <jwilk@jwilk.net>
-Jan Heberer <jangc@t-online.de>
-Marcin Ślusarz <marcin.slusarz@gmail.com>
-Marko Myllynen <myllynen@redhat.com>
-Matthew Wilcox <willy@infradead.org>
+Janne Snabb <snabb@epipe.com>
+Joe Brown <joe.brown.89@outlook.com>
+Jorge Nerin <jnerin@gmail.com>
+Kirill Tkhai <ktkhai@virtuozzo.com>
+lilydjwg <lilydjwg@gmail.com>
+Long Wang <w@laoqinren.net>
 Michael Kerrisk <mtk.manpages@gmail.com>
-Mike Frysinger <vapier@gentoo.org>
-Mike Rapoport <rppt@linux.vnet.ibm.com>
-Nicolas Biscos <nicolas.biscos+man7@gmail.com>
-Nicolas Iooss <Nicolas.Iooss@ssi.gouv.fr>
-Nikos Mavrogiannopoulos <nmav@redhat.com>
-Nominal Animal <question@nominal-animal.net>
-Silvan Jegen <s.jegen@gmail.com>
-Stephan Bergmann <sbergman@redhat.com>
-Walter Harms <wharms@bfs.de>
-Zack Weinberg <zackw@panix.com>
-丁贵强<dingguiqiang@foxmail.com>
+Mike Frysinger <vapier@chromium.org>
+Nadav Har'El <nyh@math.technion.ac.il>
+NeilBrown <neilb@suse.com>
+Pavel Tikhomirov <ptikhomirov@virtuozzo.com>
+Quentin Rameau <quinq@fifth.space>
+Ruben Kerkhof <ruben@rubenkerkhof.com>
+sulit <sulitsrc@foxmail.com>
+石井大貴 <hiroki.ishii@miraclelinux.com>
 
 Apologies if I missed anyone!
-
-
-New and rewritten pages
------------------------
-
-ioctl_userfaultfd.2
-    Michael Kerrisk, Mike Rapoport
-        New page describing ioctl(2) operations for userfaultfd
-
-statx.2
-    David Howells, Michael Kerrisk  [Andreas Dilger]
-        New page describing statx(2) system call added in Linux 4.11
-
-userfaultfd.2
-    Mike Rapoport, Michael Kerrisk  [Andrea Arcangeli]
-        New page describing userfaultfd(2) system call.
-
-pthread_atfork.3
-    Michael Kerrisk
-        New page describing pthread_atfork(3)
-
-slabinfo.5
-    Michael Kerrisk
-        Rewrite to try to bring the content close to current reality
-            There's still gaps to fill in, but the existing page
-            was in any case hugely out of date.
-
-inode.7
-    Michael Kerrisk
-        New page with information about inodes
-            David Howells provided a statx(2) page that duplicated much of
-            the information from form stat(2). Avoid such duplication
-            by moving the common information in stat(2) and statx(2)
-            to a new page.
-
-
-Renamed pages
---------------
-
-ioctl_console.2
-    Michael Kerrisk
-        Renamed from console_ioctl.4
-            Most ioctl() man pages are in section 2, so move this one there
-            for consistency.
-    Michael Kerrisk
-        Note type of 'argp' for a various operations
-            For some commands, there was no clear statement about the type
-            of the 'argp' argument.
-
-ioctl_tty.2
-    Michael Kerrisk
-        Renamed from tty_ioctl(4)
-            All other ioctl(2) pages are in section 2. Make this
-            page consistent.
-    Michael Kerrisk
-        Packet mode state change events give POLLPRI events for poll(2)
 
 
 Newly documented interfaces in existing pages
 ---------------------------------------------
 
-ioctl_ns.2
-    Michael Kerrisk
-        Document the NS_GET_NSTYPE operation added in Linux 4.11
-    Michael Kerrisk
-        Document the NS_GET_OWNER_UID operation added in Linux 4.11
-
-proc.5
-    Michael Kerrisk
-        Document /proc/sys/kernel/sched_child_runs_first
-
-
-New and changed links
----------------------
-
-console_ioctl.4
-    Michael Kerrisk
-        Link for old name of ioctl_console(2) page
-
-tty_ioctl.4
-    Michael Kerrisk
-        Link for old name of ioctl_tty(2) page
-
-
-Global changes
---------------
-
-Various pages
-    Michael Kerrisk
-        Change page cross-references from tty_ioctl(4) to ioctl_tty(2)
-    Michael Kerrisk
-        Change page cross-references for console_ioctl(4) to ioctl_console(2)
+namespaces.7
+    Kirill Tkhai  [Michael Kerrisk]
+        Document the /proc/[pid]/ns/pid_for_children file
 
 
 Changes to individual pages
 ---------------------------
 
-alarm.2
+ldd.1
     Michael Kerrisk
-        SEE ALSO: add timer_create(2) and timerfd_create(2)
+        'objdump -p prog | grep NEEDED' doesn't give quite same info as 'ldd'
 
 chmod.2
-fsync.2
-mkdir.2
-mknod.2
-open.2
-truncate.2
-umask.2
-utime.2
-utimensat.2
     Michael Kerrisk
-        Add/replace references to inode(7)
+        Put fchmod() feature test macro requirements in a more readable format
+    Michael Kerrisk
+        Note glibc 2.24 feature test macro requirements changes for fchmod()
+
+chown.2
+    Michael Kerrisk
+        When file owner or group is changed, file capabilities are cleared
+    Michael Kerrisk
+        Changes to file owner by root also clear set-UID and set-GID bits
 
 clone.2
     Michael Kerrisk
-        CLONE_NEWCGROUP by an unprivileged process also causes an EPERM error
+        Update BUGS to reflect fact that PID caching was removed in glibc 2.25
 
-clone.2
-unshare.2
+epoll_wait.2
     Michael Kerrisk
-        Exceeding one of the limits in /proc/sys/user/* can cause ENOSPC
-    Michael Kerrisk
-        CLONE_NEWPID yields ENOSPC if nesting limit of PID namespaces is reached
-    Michael Kerrisk
-        Exceeding the maximum nested user namespace limit now gives ENOSPC
-            Formerly, if the limit of 32 nested user namespaces was exceeded,
-            the error EUSERS resulted. Starting with Linux 4.9, the error
-            is ENOSPC.
+        Clarify semantics of returned 'data' field
+            The returned 'data' is the 'data' most recently set via
+            epoll_ctl().
 
-epoll_ctl.2
-    Michael Kerrisk
-        Defer to poll(2) for an explanation of EPOLLIN
-    Michael Kerrisk  [Nicolas Biscos]
-        EPOLLERR is also set on write end of a pipe when the read end is closed
-    Michael Kerrisk  [Nicolas Biscos]
-        Give the reader a clue that the 'events' field can be zero
-            'events' specified as zero still allows EPOLLHUP and
-            EPOLLERR to be reported.
-
-_exit.2
-    Michael Kerrisk
-        On exit, child processes may be inherited by a "subreaper"
-            It is no longer necessarily true that orphaned processes
-            are inherited by PID 1.
-    Michael Kerrisk
-        Only the least significant byte of exit status is passed to the parent
-
-fcntl.2
-    Michael Kerrisk
-        Mention memfd_create() in the discussion of file seals
-            Give the reader a clue about what kinds of objects can
-            be employed with file seals.
-    Michael Kerrisk
-        File seals are not generally applicable to tmpfs(5) files
-            As far as I can see, file seals can be applied only to
-            memfd_create(2) file descriptors. This was checked by experiment
-            and by reading mm/shmem.c::shmem_get_inode((), where one finds
-            the following line that applies to all new shmem files:
-
-                            info->seals = F_SEAL_SEAL;
-
-            Only in the code of the memfd_create() system call is this
-            setting reversed (in mm/shmem.c::memfd_create):
-
-                    if (flags & MFD_ALLOW_SEALING)
-                            info->seals &= ~F_SEAL_SEAL;
-
-fork.2
-    Michael Kerrisk
-        SEE ALSO: add pthread_atfork(3)
-
-getdents.2
-open.2
-stat.2
-statx.2
-    Michael Kerrisk
-        SEE ALSO: add inode(7)
-
-getdtablesize.2
-attr.5
-    Alexander Miller
-        Move .so directive to first line
-            Improves compatibility with the man and other dumb tools
-            that process man page files.
+get_mempolicy.2
+    Michael Kerrisk  [Nadav Har'El, Andi Kleen]
+        SYNOPSIS: fix return type of get_mempolicy()
+            See https://bugzilla.kernel.org/show_bug.cgi?id=97051
 
 getpid.2
-    Michael Kerrisk
-        Mention init(1) and "subreapers" in discussion of parent PID
+    Carlos O'Donell, Michael Kerrisk
+        Note that PID caching is removed as of glibc 2.25
+            Since glibc 2.25 the PID cache is removed.
 
-ioctl_list.2
-    Cyril Hrubis  [Arnd Bergmann]
-        BLKRASET/BLKRAGET take unsigned long
+            Rationale given in the release notes:
+            https://sourceware.org/glibc/wiki/Release/2.25#pid_cache_removal
 
-ioctl_ns.2
+ioctl.2
     Michael Kerrisk
-        ERRORS: document ENOTTY
+        SEE ALSO: add ioctl_getfsmap(2)
 
-kexec_load.2
-sched_setaffinity.2
-bootparam.7
+ioctl_getfsmap.2
     Michael Kerrisk
-        Documentation/kernel-parameters.txt is now in Documentation/admin-guide/
+        Fix ordering of sections
+    Michael Kerrisk
+        Add VERSIONS section
 
-lseek.2
+ioctl_getfsmap.2
+    Darrick J. Wong
+        Document the GETFSMAP ioctl
+            Document the new GETFSMAP ioctl that returns the physical layout of a
+            (disk-based) filesystem.
     Michael Kerrisk
-        SEE ALSO: add fallocate(2)
-            Both of these pages discuss file holes.
+        ERRORS: order alphabetically
 
-mincore.2
+madvise.2
     Michael Kerrisk
-        SEE ALSO: add fincore(1)
+        Remove bogus text re POSIX_MADV_NOREUSE
+            There is a POSIX_FADV_NOREUSE for posix_fadvise(),
+            but no POSIX_MADV_NOREUSE for any API in POSIX.
 
-mmap.2
+membarrier.2
     Michael Kerrisk
-        Remove ancient reference to flags that appear on some other systems
-            MAP_AUTOGROW, MAP_AUTORESRV, MAP_COPY, and MAP_LOCAL may have
-            appeared on some systems many years ago, but  the discussion here
-            mentions no details and the systems and flags probably ceased to
-            be relevant long ago. So, remove this text.
-    Michael Kerrisk
-        SEE ALSO: add userfaultfd(2)
+        Add ENOSYS error for 'nohz_full' CPU setting
+
+mount.2
+    NeilBrown
+        Revise description of MS_REMOUNT | MS_BIND
+            MS_REMOUNT|MS_BIND affects all per-mount-point
+            flag.  MS_RDONLY is only special because it,
+            uniquely, is both a per-mount-point flag *and* a
+            per-filesystem flag.
+
+            So the sections of per-mount-point flags and
+            MS_REMOUNT can usefully be clarified.
 
 open.2
     Michael Kerrisk
-        Add statx() to list of "at" calls in rationale discussion
+        Note some further advantages of the *at() APIs
 
-poll.2
+pipe.2
     Michael Kerrisk
-        Expand discussion of POLLPRI
-    Michael Kerrisk  [Nicolas Biscos]
-        POLLERR is also set on write end of a pipe when the read end is closed
+        SEE ALSO: add tee(2) and vmsplice(2)
 
-posix_fadvise.2
+readv.2
     Michael Kerrisk
-        SEE ALSO: add fincore(1)
-
-prctl.2
-    Mike Frysinger
-        PR_SET_MM: Refine CONFIG_CHECKPOINT_RESTORE requirement
-            The Linux 3.10 release dropped the c/r requirement and opened it
-            up to all users.
-    Mike Frysinger
-        PR_SET_MM: Document new PR_SET_MM_MAP{,_SIZE} helpers
-    Mike Frysinger
-        PR_SET_MM: Document arg4/arg5 zero behavior
-            The kernel will immediately reject calls where arg4/arg5 are not
-            zero.  See kernel/sys.c:prctl_set_mm().
-    Michael Kerrisk
-        Explain rationale for use of subreaper processes
-    Michael Kerrisk
-        Note semantics of child_subreaper setting on fork() and exec()
-    Michael Kerrisk
-        Improve description of PR_SET_CHILD_SUBREAPER
-
-rename.2
-    Michael Kerrisk  [Georg Sauthoff]
-        Note that there is no glibc wrapper for renameat2()
+        glibc 2.26 adds library support for preadv2() and pwritev2()
 
 sched_setaffinity.2
     Michael Kerrisk
-        SEE ALSO: add get_nprocs(3)
+        Mention cpuset cgroups as a cause of EINVAL error
 
-select.2
-    Michael Kerrisk  [Matthew Wilcox, Carlos O'Donell]
-        Linux select() is buggy wrt POSIX in its check for EBADF errors
-    Michael Kerrisk
-        Show correspondence between select() and poll() readiness notifications
-    Michael Kerrisk
-        Give a hint that sets must be reinitialized if using select() in a loop
-    Michael Kerrisk
-        Refer to POLLPRI in poll(2) for info on exceptional conditions
-    Michael Kerrisk
-        Move mislocated text describing the self-pipe text from BUGS to NOTES
+seccomp.2
+    Mike Frysinger
+        Expand SECCOMP_RET_KILL documentation
 
 sigaction.2
     Michael Kerrisk
-        Show the prototype of an SA_SIGINFO signal handler
+        Note feature test macro requirements for 'si_code' constants
+    Michael Kerrisk
+        Add a subheading for the description of 'si_code'
+    Michael Kerrisk
+        TRAP_BRANCH and TRAP_HWBKPT are present only on IA64
 
-signalfd.2
+sigaltstack.2
     Michael Kerrisk
-        SIGKILL and SIGSTOP are silently ignored in 'mask'
+        Note that specifying SS_ONSTACK in ss.ss_flags decreases portability
+            In the Illumos source (which presumably mirrors its Solaris
+            ancestry), there is this check in the sigaltstack()
+            implementation:
 
-sigprocmask.2
-    Dmitry V. Levin
-        Do not specify an exact value of rt_sigprocmask's 4th argument
-            As sizeof(kernel_sigset_t) is not the same for all architectures,
-            it would be better not to mention any numbers as its value.
-    Michael Kerrisk
-        'set' and 'oldset' can both be NULL
+                           if (ss.ss_flags & ~SS_DISABLE)
+                                    return (set_errno(EINVAL));
 
-sigwaitinfo.2
-    Michael Kerrisk
-        sigwaitinfo() can't be used to accept synchronous signals
+            And in the FreeBSD source we find similar:
 
-socketcall.2
-    Mike Frysinger
-       Document call argument
+                            if ((ss->ss_flags & ~SS_DISABLE) != 0)
+                                    return (EINVAL);
+    Michael Kerrisk
+        Note buggy addition of ss.ss_flags==SS_ONSTACK
+            Note buggy addition of ss.ss_flags==SS_ONSTACK as a synonym
+            for ss_flags==0. No other implemenation does this, AFAIK.
+            And it was not needed :-(.
+    Michael Kerrisk
+        Specifying 'ss' returns the current settings without changing them
+    Michael Kerrisk
+        Give 'oss' argument a more meaningful name: 'old_ss'
+    Michael Kerrisk
+        Some minor reworking of the text
+    Michael Kerrisk
+        ERRORS: update description of EINVAL error
 
-stat.2
+splice.2
+tee.2
+vmsplice.2
     Michael Kerrisk
-        Remove information migrated to inode(7) page
-    Michael Kerrisk
-        Restructure field descriptions as a hanging list
-    Michael Kerrisk
-        Remove "Other systems" subsection
-            These details about other systems were added in 1999,
-            and were probably of limited use then, and even less today.
-            However, they do clutter the page, so remove them.
-    Michael Kerrisk
-        DESCRIPTION: add list entries for 'st_uid' and 'st_gid'
-    Michael Kerrisk
-        Add some subsection headings to ease readability
-    David Howells
-        ERRORS: correct description of ENOENT
-    Michael Kerrisk
-        Give 'struct stat' argument a more meaningful name ('statbuf')
-    Marcin Ślusarz
-        Tweak description of AT_EMPTY_PATH
-            Currently it says when dirfd is AT_FDCWD it can be something
-            other than directory, which doesn't make much sense. Just swap
-            the order of sentences.
-    Michael Kerrisk
-        Add slightly expanded description oif 'st_ino' field
-    Michael Kerrisk
-        DESCRIPTION: add a list entry for 'st_ino'
-    Michael Kerrisk
-        DESCRIPTION: add a list entry for 'st_nlinks' field
+        SEE ALSO: add pipe(7)
 
-syscalls.2
+splice.2
     Michael Kerrisk
-        Add membarrier(2)
+        ERRORS: split EINVAL error cases
     Michael Kerrisk
-        Fix kernel version for userfaultfd(2)
+        ERRORS: add EINVAL for case where both descriptors refer to same pipe
+
+timer_create.2
     Michael Kerrisk
-        Linux 4.11 added statx()
-    Michael Kerrisk
-        Include deprecated getunwind(2) in list
+        Document the CONFIG_POSIX_TIMERS option added in Linux 4.10
 
 wait.2
     Michael Kerrisk
-        Orphaned children may be adopted by a "subreaper", rather by than PD 1
+        Note glibc 2.26 changes to feature test macro requirements for waitid()
 
-bzero.3
-    Michael Kerrisk  [Zack Weinberg]
-        Add correct header file for exlicit_bzero()
+acosh.3
+asinh.3
+atanh.3
+    Alex Henrie
+        Remove C89 designation.
+            See https://bugzilla.kernel.org/show_bug.cgi?id=196319
 
-cfree.3
+            [mtk: confirmed from review of draft of C90 standard]
+
+bsd_signal.3
     Michael Kerrisk
-        cfree() is removed from glibc in version 2.26
+        Note feature test macro requirements changes for glibc 2.26
 
-exit.3
+dl_iterate_phdr.3
     Michael Kerrisk
-        Improve discussion of zombie processes
+        dl_iterate_phdr() shows the order in which objects were loaded
+            dl_iterate_phdr() tells us not just which objects are
+            loaded, but also the order in which they are loaded
+            (the "link-map order"). Since the order is relevant for
+            understanding symbol resolution, give the reader this clue.
+    Michael Kerrisk
+        Expand the code example, and show sample output
+    Michael Kerrisk
+        List values for the 'p_type' field
 
-getentropy.3
-    Nikos Mavrogiannopoulos  [Michael Kerrisk, Florian Weimer]
-        Correct header file
-    Michael Kerrisk  [Frank Theile]
-        SYNOPSIS: add missing return type for getentropy() declaration
+dlsym.3
+    Michael Kerrisk
+        _GNU_SOURCE is needed to get RTLD_DEFAULT and RTLD_NEXT definitions
+
+flockfile.3
+    Michael Kerrisk
+        Note glibc 2.24 feature test macro requirement changes
+
+fpathconf.3
+    Michael Kerrisk
+        Rework RETURN VALUE description to add more detail
+    Michael Kerrisk
+        Add an errors section
+    Michael Kerrisk
+        Largely rewrite the description of _PC_CHOWN_RESTRICTED
+    Michael Kerrisk
+        Rewrite description of _PC_PIPE_BUF
+            The existing description was not accurate, and lacked details.
+
+ftw.3
+    Michael Kerrisk
+        BUGS: document a probable glibc regression in FTW_SLN case
+            See https://bugzilla.redhat.com/show_bug.cgi?id=1422736
+            and http://austingroupbugs.net/view.php?id=1121.
+
+getaddrinfo.3
+    Quentin Rameau
+        Fix _POSIX_C_SOURCE value for getaddrinfo()
+            The correct _POSIX_C_SOURCE value is 200112L, not 201112L in features.h.
+
+getcontext.3
+    Carlos O'Donell
+        Exemplar structure should use 'ucontext_t'.
+            In glibc we just finished a round of purging 'struct ucontext'
+            which is not in the POSIX reserved namespace of *_t tags. This has
+            some consequences to applications using the non-standard struct
+            ucontext:
+            https://sourceware.org/glibc/wiki/Release/2.26#Removal_of_.27struct_ucontext.27
+            but it also fixes a namespace conformance issue which is always a
+            longterm pain for large portable programs.
+
+            It was noted by Peter Maydell
+            (https://sourceware.org/bugzilla/show_bug.cgi?id=21457) that the
+            linux man pages still had references to 'struct ucontext' but only
+            in the form of an exemplar structure.
+
+            The patch fixes the exemplar to match what is in glibc
+            and therefore it won't ever suggest users can use 'struct
+            ucontext'.
+
+getgrent.3
+    Michael Kerrisk
+        Note glibc 2.22 changes for feature test macro requirements
 
 grantpt.3
-    Michael Kerrisk
-        Tell a more nuanced story about what grantpt() does or does not do
+ptsname.3
+unlockpt.3
+    Ferdinand Thiessen  [Michael Kerrisk]
+        Update feature test macro-requirements for glibc 2.24
 
-insque.3
-    Michael Kerrisk
-        SEE ALSO: add queue(3)
+if_nametoindex.3
+    Douglas Caetano dos Santos
+        Add ENODEV error for if_nametoindex()
+            Checked against glibc and kernel code: when given name isn't
+            a valid interface, kernel returns ENODEV and glibc just
+            forwards it.
 
-queue.3
+malloc.3
     Michael Kerrisk
-        SEE ALSO: add insque(3)
+        Document the reallocarray() added in glibc 2.26
 
-shm_open.3
+nl_langinfo.3
     Michael Kerrisk
-        Clarify that POSIX shared memory uses tmpfs(5)
+        Note feature test macro requirements for nl_langinfo_l()
 
-syslog.3
-    Michael Kerrisk  [Ian Abbott, Walter Harms]
-        Reorganize page text for easier parsing and better readability
+posix_madvise.3
+    Dr. Tobias Quathamer
+        Remove paragraph about POSIX_FADV_NOREUSE
+            POSIX_FADV_NOREUSE is documented for posix_fadvise, and a
+            corresponding POSIX_MADV_NOREUSE flag is not specified by POSIX.
+
+            Thanks to Marc Lehmann <debian-reportbug@plan9.de>
+            See https://bugs.debian.org/865699
+
+ptsname.3
+    Michael Kerrisk  [Arjun Shankar]
+        Since glibc 2.26, ptsname_r() no longer gives EINVAL for buf==NULL
+
+rand.3
     Michael Kerrisk
-        Various rewordings and improvements
+        Note glibc 2.24 feature test macro requirement changes for rand_r()
+
+resolver.3
     Michael Kerrisk
-        Note default value for 'facility' when calling openlog()
+        Add basic notes on 'op' argument of res_nmkquery() and res_mkquery()
+
+sigpause.3
     Michael Kerrisk
-        SEE ALSO: add journalctl(1)
+        Note glibc 2.26 changes to feature test macro requirements
 
-ttyname.3
-    Dmitry V. Levin
-        Document ENODEV error code
-    Christian Brauner
-        NOTES: warn about a confusing case that may occur with mount namespaces
+sigwait.3
+    Michael Kerrisk
+        Note glibc 2.26 feature test macro changes
 
+strtol.3
+    Heinrich Schuchardt
+        Mention 0X prefix
+            The prefix 0x may be capitalized as 0X.
 
-wcsdup.3
-    Jan Heberer
-        RETURN VALUE: fix error in return value description
-            Return value for failure was accidentally changed from NULL to
-            -1 in man-pages commit 572acb41c48b6b8e690d50edff367d8b8b01702a.
+            See ISO/IEC 9899:1999.
+
+sysconf.3
+    Michael Kerrisk  [Pavel Tikhomirov]
+        Rework RETURN VALUE description to add more detail
+            Make the discussion clearer, and add a few details.
+            Also, fix the problem report from Pavel Tikhomirov
+            who noted that the man page falsely said that errno
+            is not changed on a successful return.
+
+            Addresses https://bugzilla.kernel.org/show_bug.cgi?id=195955
+
+sysconf.3
+    Michael Kerrisk
+        Add ERRORS section
+
+ttyslot.3
+    Michael Kerrisk
+        Fix error in feature test macro requirements
+    Michael Kerrisk
+        Note feature test macro requirements changes in glibc 2.24
+    Michael Kerrisk
+        Clarify details of use of <stdlib.h> file
+
+unlocked_stdio.3
+    Michael Kerrisk
+        Note glibc 2.24 feature test macro requirement changes
 
 elf.5
     Michael Kerrisk
-        SEE ALSO: add elfedit(1), nm(1), size(1), strings(1), and strip(1)
+        SEE ALSO: add dl_iterate_phdr(3)
 
 nsswitch.conf.5
-    Florian Weimer
-        Mention sudoers
-            It turns out that sudo drops things into nsswitch.conf, too.
+    DJ Delorie
+        Clarify group merge rules
+            This minor patch clarifies when merging is not done,
+            and how duplicate entries are merged.
+
+            Found while extending glibc's NSS test suite, discussed with glibc
+            team and Stephen Gallagher.
 
 proc.5
     Michael Kerrisk
-        Refer to namespaces(7) for discussion of /proc/sys/user/* files
-    Michael Kerrisk
-        Simplify /proc/slabinfo entry
-            Don't repeat (out-of-date) info from slabinfo(5); just defer to
-            that page.
+        Document that 'iowait' field of /proc/stat is unreliable
+            Text taken from Chao Fan's kernel commit 9c240d757658a3ae996.
+
+slabinfo.5
+    Michael Kerrisk  [Jorge Nerin]
+        SEE ALSO: add some references to relevant kernel source files
 
 tmpfs.5
     Michael Kerrisk
-        tmpfs supports extended attributes, but not 'user' extended attributes
+        SEE ALSO: add memfd_create(2), mmap(2), shm_open(3)
 
-environ.7
-    Jakub Wilk
-        Fix name of function that honors TMPDIR
-            tempnam() takes the TMPDIR environment variable into account, unlike
-            tmpnam(), which always creates pathnames within /tmp.
-
-hostname.7
-    Marko Myllynen
-        Use lower case for hostname example
-    Marko Myllynen
-        Use generic names in examples
-    Marko Myllynen
-        Describe accepted characters for hostname
-
-inotify.7
-    Michael Kerrisk  [Nicolas Iooss]
-        Mounting a filesystem on top of a monitored directory causes no event
-
-man-pages.7
+capabilities.7
     Michael Kerrisk
-        Note preferred approach for 'duplicate' errors
-
-namespaces.7
+        Clarify the effect on process capabilities when UID 0 does execve(2)
     Michael Kerrisk
-        Document the /proc/sys/user/* files added in Linux 4.9
+        Note effect on capabilities when a process with UID != 0 does execve(2)
+    Michael Kerrisk  [David Lewis]
+        Fix reversed descriptions of CAP_MAC_OVERRIDE and CAP_MAC_ADMIN
+    Michael Kerrisk
+        SEE ALSO: add filecap(8), netcap(8), pscap(8)
+
+cgroup_namespaces.7
+    Michael Kerrisk
+        Add some further explanation of the example shell session
+    Michael Kerrisk
+        Fix a bug in shell session example
+    Michael Kerrisk
+        Some minor wording fixes and clarifications
+
+inode.7
+    Michael Kerrisk
+        Note glibc 2.24 feature test macro changes for S_IFSOCK and S_ISSOCK()
+
+man.7
+    G. Branden Robinson
+        Undocument "URL" macro in man(7) in favor .UR+.UE
 
 pid_namespaces.7
     Michael Kerrisk
-        The maximum nesting depth for PID namespaces is 32
+        Mention /proc/[pid]/ns/pid_for_children
 
-user_namespaces.7: Fixes to example
-    Stephan Bergmann
-        While toying around with the userns_child_exec example program on the
-        user_namespaces(7) man page, I noticed two things:
-
-        * In the EXAMPLE section, we need to mount the new /proc before
-          looking at /proc/$$/status, otherwise the latter will print
-          information about the outer namespace's PID 1 (i.e., the real
-          init).  So the two paragraphs need to be swapped.
-
-        * In the program source, make sure to close pipe_fd[0] in the
-          child before exec'ing.
-
-pthreads.7
+pipe.7
     Michael Kerrisk
-        SEE ALSO: add pthread_rwlockattr_setkind_np(3)
+        SEE ALSO: add tee(2) and vmsplice(2)
 
-pty.7
+sigevent.7
     Michael Kerrisk
-        Mention a couple of other applications of pseudoterminals
-
-sem_overview.7
-    Michael Kerrisk
-        SEE ALSO: add shm_overview(7)
+        Mention signal.h header file
 
 signal.7
+    Michael Kerrisk  [lilydjwg]
+        Since Linux 3.8, read(2) on an inotify FD is restartable with SA_RESTART
+            See https://bugzilla.kernel.org/show_bug.cgi?id=195711
     Michael Kerrisk
-        SEE ALSO: add sigreturn(2)
-
-socket.7
-    Michael Kerrisk
-        Enhance the description of SO_INCOMING_CPU
-    Francois Saint-Jacques
-        Document SO_INCOMING_CPU
+        read() from an inotify FD is no longer interrupted by a stop signal
+            (Change was in Linux 3.8.)
 
 tcp.7
     Michael Kerrisk
-        Note indications for OOB data given by select(2) and poll(2)
-    Chema Gonzalez
-        tcp_abc was removed in 3.9
-
-xattr.7
-    Michael Kerrisk
-        SEE ALSO: add ioctl_iflags(2)
-            People sometimes confuse xattrs and inode flags. Provide a link
-            to the page that describes inode flags to give them a tip.
+        Document value '2' for tcp_timestamps
+            Since Linux 4.10, the value '2' is meaningful for tcp_timestamps
+    Ruben Kerkhof
+        Change default value of tcp_frto
+            The default changed in c96fd3d461fa495400df24be3b3b66f0e0b152f9
+            (Linux 2.6.24).
 
 ld.so.8
     Michael Kerrisk
-        Mention quoting when using "Rpath tokens" in LD_AUDIT and LD_PRELOAD
-    Michael Kerrisk
-        Expand description of /etc/ld.so.preload
-    Michael Kerrisk
-        Mention ldconfig(8) in discussion of /etc/ld.so.cache
+        Greatly expand the explanation of LD_DYNAMIC_WEAK
+    Carlos O'Donell
+        Expand DT_RUNPATH details.
+            ld.so.8: Expand DT_RUNPATH details.
 
-zdump.8
-    Jakub Wilk
-        Add OPTIONS section heading
+            Every 3 years we get asked why DT_RUNPATH doesn't work like DT_RPATH.
+            The most recent question was here:
+            https://www.sourceware.org/ml/libc-help/2017-06/msg00013.html
+
+            We need to expand the description of DT_RUNPATH to cover this
+            situation and explain that the DT_RUNPATH entries apply only to the
+            immediate DT_NEEDED, not that of another, say dlopen'd child object.
+    Michael Kerrisk
+        Since glibc 2.2.5, LD_PROFILE is ignored in secure-execution mode
+    Michael Kerrisk
+        Make notes on secure-execute mode more prominent
+            Place each note on secure-execution mode in a separate
+            paragraph, to make it more obvious.
+    Michael Kerrisk
+        Note that libraries in standard directories are not normally set-UID
+            In secure mode, LD_PRELOAD loads only libraries from standard
+            directories that are marked set-UID. Note that it is unusual for
+            a library to be marked in this way.
+    Michael Kerrisk
+        SEE ALSO: add elf(5)
+    Michael Kerrisk
+        Note version where secure-execution started ignoring LD_USE_LOAD_BIAS
+    Michael Kerrisk
+        Correct glibc version that ignores LD_SHOW_AUXV in secure-execution mode
+            Ignored since 2.3.4 (not 2.3.5).
+    Michael Kerrisk
+        Rewrite LD_DEBUG_OUTPUT description and note that .PID is appended
