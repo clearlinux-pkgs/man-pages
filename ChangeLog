@@ -1,6 +1,6 @@
-==================== Changes in man-pages-4.15 ====================
+==================== Changes in man-pages-4.16 ====================
 
-Released: 2018-02-02, Palo Alto
+Released: 2018-04-30, Munich
 
 
 Contributors
@@ -10,280 +10,370 @@ The following people contributed patches/fixes or (noted in brackets
 in the changelog below) reports, notes, and ideas that have been
 incorporated in changes in this release:
 
-Adam Liddell <ml+kernel.org@aliddell.com>
-Andrea Parri <parri.andrea@gmail.com>
-Andries E. Brouwer <Andries.Brouwer@cwi.nl>
-Elie Roudninski <xademax@gmail.com>
-Eric Benton <erbenton@comcast.net>
-Florian Weimer <fweimer@redhat.com>
-G. Branden Robinson <g.branden.robinson@gmail.com>
+Adam Borowski <kilobyte@angband.pl>
+Andy Owen <andrew.owen@dolby.com>
+Carlos O'Donell <carlos@redhat.com>
+Carsten Grohmann <carstengrohmann@gmx.de>
+Elvira Khabirova <lineprinter@altlinux.org>
+Enrique Garcia <cquike@arcor.de>
+Frederic Brault <fbrault@xyalis.com>
+Heinrich Schuchardt <xypron.glpk@gmx.de>
+Howard Johnson <hwj@BridgeportContractor.com>
 Jakub Wilk <jwilk@jwilk.net>
-Joel Williamson <jwilliamson@carnegietechnologies.com>
+Jan Kara <jack@suse.cz>
+Jann Horn <jannh@google.com>
 John Hubbard <jhubbard@nvidia.com>
-Jorgen Hansen <jhansen@vmware.com>
-Keno Fischer <keno@juliacomputing.com>
+Jürg Billeter <j@bitron.ch>
+Konstantin Grinemayer <cdlscpmv@gmail.com>
+Konstantin Khlebnikov <khlebnikov@yandex-team.ru>
+Martin Mares <mj@ucw.cz>
+Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+Mattias Andrée <maandree@kth.se>
 Michael Kerrisk <mtk.manpages@gmail.com>
-Michal Hocko <mhocko@kernel.org>
-NeilBrown <neilb@suse.com>
-Nikola Forró <nforro@redhat.com>
-Nikolay Borisov <nborisov@suse.com>
-Pradeep Kumar <pradeepsixer@gmail.com>
-QingFeng Hao <haoqf@linux.vnet.ibm.com>
-Ricardo Biehl Pasquali <pasqualirb@gmail.com>
-roblabla <man-pages@roblab.la>
-Roman Gushchin <guro@fb.com>
-Shawn Landden <slandden@gmail.com>
-Stefan Hajnoczi <stefanha@redhat.com>
-Stefan Raspl <raspl@linux.vnet.ibm.com>
-Tejun Heo <tj@kernel.org>
+Michal Hocko <mhocko@suse.com>
+Mike Frysinger <vapier@gentoo.org>
+Nikos Mavrogiannopoulos <nmavrogi@redhat.com>
+Robin Kuzmin <kuzmin.robin@gmail.com>
+Ross Zwisler <ross.zwisler@linux.intel.com>
+Rusty Russell <rusty@rustcorp.com.au>
+Serge E. Hallyn <serge@hallyn.com>
+Song Liu <songliubraving@fb.com>
+Tomi Salminen <tsalminen@forcepoint.com>
 
 Apologies if I missed anyone!
-
-
-New and rewritten pages
------------------------
-
-s390_sthyi.2
-    QingFeng Hao  [Michael Kerrisk]
-        New page for s390-specific s390_sthyi(2)
-
-network_namespaces.7
-    Michael Kerrisk
-        New page describing network namespaces
-            Based on content moved from namespaces(7)
-    Michael Kerrisk
-        Reorganize text
-            No content changes...
-    Michael Kerrisk
-        When a NW namespace is freed, veth devices are destroyed
-
-vsock.7
-    Stefan Hajnoczi  [Jorgen Hansen, Michael Kerrisk]
-        Document the VSOCK socket address family
 
 
 Newly documented interfaces in existing pages
 ---------------------------------------------
 
-cgroups.7
-    Michael Kerrisk  [Tejun Heo]
-        Document cgroups v2 "thread mode"
-    Michael Kerrisk  [Tejun Heo]
-        Document cgroup v2 delegation via the 'nsdelegate' mount option
+membarrier.2
+    Mathieu Desnoyers  [Michael Kerrisk]
+        Document new membarrier commands introduced in Linux 4.16
+            Document the following membarrier commands introduced in
+            Linux 4.16:
+
+                MEMBARRIER_CMD_GLOBAL_EXPEDITED
+                    (the old enum label MEMBARRIER_CMD_SHARED is now an
+                    alias to preserve header backward compatibility)
+                MEMBARRIER_CMD_REGISTER_GLOBAL_EXPEDITED
+                MEMBARRIER_CMD_PRIVATE_EXPEDITED_SYNC_CORE
+                MEMBARRIER_CMD_REGISTER_PRIVATE_EXPEDITED_SYNC_CORE
+
+mmap.2
+    Jan Kara  [Ross Zwisler, Michael Kerrisk]
+        Add description of MAP_SHARED_VALIDATE and MAP_SYNC
+    Michal Hocko  [John Hubbard, Michael Kerrisk, Jann Horn]
+        Document new MAP_FIXED_NOREPLACE flag
+            4.17+ kernels offer a new MAP_FIXED_NOREPLACE flag which allows
+            the caller to atomically probe for a given address range.
+
+readv.2
+io_submit.2
+    Jürg Billeter
+        Document RWF_APPEND added in Linux 4.16
+
+capabilities.7
     Michael Kerrisk
-        Document the cgroup.max.depth and cgroup.max.descendants files
-    Michael Kerrisk
-        Document 'release_agent' mount option
-    Michael Kerrisk  [Roman Gushchin]
-        Document /sys/kernel/cgroup/delegate
-    Michael Kerrisk  [Roman Gushchin]
-        Document /sys/kernel/cgroup/features
-    Michael Kerrisk  [Roman Gushchin]
-        Document cgroups v2 cgroup.stat file
-
-
-Global changes
---------------
-
-Various pages
-    G. Branden Robinson
-        Standardize on "nonzero"
-            Also add this term to the style guide in man-pages(7).
+        Describe file capability versioning
+    Michael Kerrisk  [Serge E. Hallyn]
+        Document namespaced-file capabilities
+        [There's still more work to be done on this new text]
 
 
 Changes to individual pages
 ---------------------------
 
 bpf.2
-    Nikolay Borisov
-        Sync list of supported map types with 4.14 kernel
+    Michael Kerrisk
+        Update list of architectures that support JITed eBPF
+            And note kernel version numbers where support is added.
+    Michael Kerrisk
+        Kernel 4.15 added CONFIG_BPF_JIT_ALWAYS_ON
+            This causes the JIT compiler to be always on and
+            forces bpf_jit_enable to 1.
 
-copy_file_range.2
+execve.2
     Michael Kerrisk
-        Library support was added in glibc 2.27
-    Shawn Landden
-        glibc provides a user-space emulation where the system call is absent
-    Florian Weimer
-        EFBIG errors are possible, similar to write(2)
+        Note that describing execve as "executing a new process" is misleading
+            This misdescription is so common that it's worth calling it out
+            explicitly.
     Michael Kerrisk
-        ERRORS: add EISDIR
-    Michael Kerrisk
-        Order ERRORS alphabetically
-    Michael Kerrisk
-        Add comment to code example explaining use of syscall(2)
+        More explicitly describe effect of execve() in the opening paragraph
 
-fcntl.2
-read.2
-write.2
-    NeilBrown
-        Document "Lost locks" as cause for EIO.
-            If an advisory lock is lost, then read/write requests on any
-            affected file descriptor can return EIO - for NFSv4 at least.
+fallocate.2
+    Michael Kerrisk
+        Since Linux 4.16, Btrfs supports FALLOC_FL_ZERO_RANGE
 
-memfd_create.2
+getrlimit.2
     Michael Kerrisk
-        glibc support for memfd_create() was added in version 2.27
+        CAP_SYS_RESOURCE capability is required in *initial user namespace*
 
-mlock.2
+io_submit.2
     Michael Kerrisk
-        Make details for MLOCK_ONFAULT a little more explicit
+        Add kernel version numbers for various 'aio_rw_flags' flags
     Michael Kerrisk
-        glibc support for mlock2() is added in version 2.27
+        Place 'aio_rw_flags' in alphabetical order
 
 mmap.2
-    John Hubbard  [Michael Hocko]
-        MAP_FIXED is no longer discouraged
-            MAP_FIXED has been widely used for a very long time, yet the man
-            page still claims that "the use of this option is discouraged".
-    John Hubbard
-        MAP_FIXED updated documentation
-                -- Expand the documentation to discuss the hazards in
-                   enough detail to allow avoiding them.
-
-                -- Mention the upcoming MAP_FIXED_SAFE flag.
-
-                -- Enhance the alignment requirement slightly.
+    Jann Horn
+        MAP_FIXED is okay if the address range has been reserved
+            Clarify that MAP_FIXED is appropriate if the specified address
+            range has been reserved using an existing mapping, but shouldn't
+            be used otherwise.
+    Michael Kerrisk
+        Move the text on MAP_FIXED to NOTES
+            This text has become rather long, making it it somewhat
+            unwieldy in the discussion of the mmap() flags. Therefore,
+            move it to NOTES, with a pointer in DESCRIPTION referring
+            the reader to NOTES.
+    Michael Kerrisk  [Heinrich Schuchardt]
+        Clarify that when addr==NULL, address chosen by kernel is page-aligned
+    Michael Kerrisk
+        Add a little historical detail on the obsolete MAP_DENYWRITE
 
 mount.2
-    Keno Fischer  [Michael Kerrisk]
-        Add EINVAL error condition when MS_BINDing MNT_LOCKED submounts
-
-mprotect.2
-pkey_alloc.2
     Michael Kerrisk
-        Glibc support for memory protection keys was added in version 2.27
+        ERRORS: add EBUSY for the case of trying to stack same mount twice
+    Michael Kerrisk
+        Remove a couple of obsolete EBUSY errors
+            As far as I can tell, these EBUSY errors disappeared
+            with the addition of stackable mounts in Linux 2.4.
+
+msgget.2
+semget.2
+shmget.2
+    Michael Kerrisk
+        The purpose of "flags" == 0 is to obtain ID of an existing IPC object
+            This was implied in these pages, but the meaning of "flags" == 0
+            could be more explicit, as indicated by questions such as
+            https://stackoverflow.com/questions/49833569/flag-value-of-semget-function
+
+open.2
+    Jann Horn
+        Document more -ETXTBSY conditions
+    Jakub Wilk
+        Add missing argument for snprintf() in example code
 
 perf_event_open.2
-    Michael Kerrisk
-        SEE ALSO: add perf(1)
+    Song Liu
+        Add type kprobe and uprobe
+            Two new types kprobe and uprobe are being added to
+            perf_event_open(), which allow creating kprobe or
+            uprobe with perf_event_open. This patch adds
+            information about these types.
 
-pkey_alloc.2
-    Michael Kerrisk
-        Clarify description of pkey_alloc() 'flags' argument
+ptrace.2
+    Jann Horn
+        Copy retval info for SECCOMP_GET_FILTER to right section
+            The "RETURN VALUE" section made a claim that was incorrect for
+            PTRACE_SECCOMP_GET_FILTER. Explicitly describe the behavior of
+            PTRACE_SECCOMP_GET_FILTER in the "RETURN VALUE" section (as
+            usual), but leave the now duplicate description in the section
+            describing PTRACE_SECCOMP_GET_FILTER, since the
+            PTRACE_SECCOMP_GET_FILTER section would otherwise probably become
+            harder to understand.
 
-prctl.2
+readv.2
     Michael Kerrisk
-        Defer to capabilities(7) for discussion of the "keep capabilities" flag
-
-recvmmsg.2
-sendmmsg.2
-    Nikola Forró
-        Point out that error handling is unreliable
+        Remove redundant sentence
 
 seccomp.2
     Michael Kerrisk
-        Clarify that SECCOMP_RET_TRAP SIGSYS signal is thread-directed
-
-syscalls.2
+        Note that execve() may change syscall numbers during life of process
+            On a multiarch/multi-ABI platform such as modern x86, each
+            architecture/ABI (x86-64, x32, i386)has its own syscall numbers,
+            which means a seccomp() filter may see different syscall numbers
+            over the life of the process if that process uses execve() to
+            execute programs that has a different architectures/ABIs.
     Michael Kerrisk
-        Add s390-specific s390_sthyi(2) to syscall list
-
-unshare.2
+        Note which architectures support seccomp BPF
     Michael Kerrisk
-        Clarify the EUSERS occurred only until kernel 4.8
+        In EXAMPLE, clearly note that x32 syscalls are >= X32_SYSCALL_BIT
 
-errno.3
-    Michael Kerrisk
-        'errno -s' can be used to search for errors by string in description
-    Michael Kerrisk
-        Add Linux error text corresponding to ENOMEM
+shutdown.2
+    Carsten Grohmann
+        SEE ALSO: add close(2)
 
-fgetpwent.3
-    Michael Kerrisk
-        Add missing ATTRIBUTES preamble
+syscall.2
+    Adam Borowski
+        Add riscv
 
-fts.3
-    Michael Kerrisk  [Pradeep Kumar]
-        fts_pathlen = strlen(fts_path) + strlen(fts_name)
+wait.2
+    Michael Kerrisk  [Robin Kuzmin]
+        wait() and waitpid() block the calling thread (not process)
 
-fuse.4
-    Michael Kerrisk
-        Places errors in alphabetical order (no content changes)
+wait4.2
+    Michael Kerrisk  [Martin Mares]
+        Soften the warning against the use of wait3()/wait4()
+            These functions are nonstandard, but there is no replacement.
 
-veth.4
+            See https://bugzilla.kernel.org/show_bug.cgi?id=199215
+
+crypt.3
+encrypt.3
+    Carlos O'Donell  [Michael Kerrisk]
+        Add notes about _XOPEN_CRYPT
+            The distribution may choose not to support _XOPEN_CRYPT in the
+            case that the distribution has transitioned from glibc crypt to
+            libxcrypt.
+
+fseek.3
+    Michael Kerrisk  [Andy Owen]
+        ERRORS: EBADF should be ESPIPE
     Michael Kerrisk
-        Add network_namespaces(7)
+        Improve EPIPE error text
+
+getcwd.3
+    Carlos O'Donell
+        Mention that "(unreachable)" is no longer returned for glibc >= 2.27.
+
+makedev.3
+    Michael Kerrisk
+        Since glibc 2.28, <sys/types.h> no longer defines these macros
+
+pthread_create.3
+    Frederic Brault
+        Note default thread stack size for several architectures
+
+tsearch.3
+    Jann Horn
+        Clarify items vs nodes
+            The manpage claimed that tsearch() returns a pointer to a data
+            item. This is incorrect; tsearch() returns a pointer to the
+            corresponding tree node, which can also be interpreted as a
+            pointer to a pointer to the data item.
+
+            Since this API is quite unintuitive, also add a clarifying
+            sentence.
+    Jann Horn
+        tdelete() can return dangling pointers
+            POSIX says that deleting the root node must cause tdelete() to
+            return some unspecified non-NULL pointer. Glibc implements it by
+            returning a dangling pointer to the (freed) root node.
+            Therefore, explicitly note that tdelete() may return bad pointers
+            that must not be accessed.
+
+elf.5
+    Michael Kerrisk
+        SEE ALSO: add patchelf(1)
+
+filesystems.5
+    Michael Kerrisk
+        Add an entry for tmpfs(5)
+
+group.5
+    Michael Kerrisk
+        SEE ALSO: add vigr(8)
+
+passwd.5
+    Michael Kerrisk
+        SEE ALSO: add vipw(8)
 
 sysfs.5
     Michael Kerrisk
-        Refer to cgroups(7) for information about files in /sys/kernel/cgroup
+        Add brief note on /sys/fs/smackfs
+
+tmpfs.5
+    Mike Frysinger
+        Document current mount options
+            Some of this content is moved from the mount(8) man page.
+            Style was based on proc(5) sections.
+    Michael Kerrisk
+        Remove reference to mount(8) for discussion of mount options
+            The mount options are now described in this page.
+    Michael Kerrisk
+        SEE ALSO: add Documentation/vm/transhuge.txt
+    Michael Kerrisk
+        Reformat 'huge' and 'mpol' mount option values as lists
+    Michael Kerrisk
+        Describe 'mpol' mount options
+            Based on text from Documentation/filesystems/tmpfs.txt.
+    Michael Kerrisk
+        Document 'huge' mount options
+            Based on text from Documentation/vm/transhuge.txt.
+    Michael Kerrisk
+        SEE ALSO: add set_mempolicy(2)
+    Michael Kerrisk
+        Document mpol=local mount option
 
 capabilities.7
     Michael Kerrisk
-        Note which capability sets are affected by SECBIT_NO_SETUID_FIXUP
-            Note explicitly that SECBIT_NO_SETUID_FIXUP is relevant for
-            the permitted, effective, and ambient capability sets.
-    Michael Kerrisk
-        Deemphasize the ancient prctl(2) PR_SET_KEEPCAPS command
-            The modern approach is SECBITS_KEEP_CAPS.
-    Michael Kerrisk
-        Clarify effect of CAP_SETFCAP
-            Make it clear that CAP_SETFCAP allows setting arbitrary
-            capabilities on a file.
-    Michael Kerrisk
-        Clarify which capability sets are effected by SECBIT_KEEP_CAPS
-            This flag has relevance only for the process permitted and
-            effective sets.
-    Michael Kerrisk
-        Rephrase CAP_SETPCAP description
-            * Mention kernel versions.
-            * Place current kernel behavior first
-    Michael Kerrisk
-        SECBIT_KEEP_CAPS is ignored if SECBIT_NO_SETUID_FIXUP is set
-    Michael Kerrisk
-        Ambient set is also cleared when UIDs are set to nonzero value
+        Remove redundant mention of PTRACE_SECCOMP_GET_FILTER
 
 cgroups.7
     Michael Kerrisk
-        Add a more complete description of cgroup v1 named hierarchies
-    Michael Kerrisk
-        Add a section on unmounting cgroup v1 filesystems
-    Michael Kerrisk
-        Add subsection describing cgroups v2 subtree delegation
-    Michael Kerrisk
-        Mention ENOENT error that can occur when writing to subtree_control file
-    Michael Kerrisk
-        Add list of currently available version 2 controllers
-    Nikolay Borisov
-        Add information about RDMA controller
-    Michael Kerrisk
-        Rewrite the description of cgroup v2 subtree control
-    Michael Kerrisk  [Tejun Heo]
-        Note Linux 4.11 changes to cgroup v2 delegation containment rules
-    Michael Kerrisk
-        systemd(1) nowadays automatically mounts the cgroup2 filesystem
-    Michael Kerrisk
-        Clarify that cgroup.controllers is read-only
-    Michael Kerrisk
-        Elaborate a little on problems of splitting threads across cgroups in v1
-    Michael Kerrisk  [Tejun Heo]
-        Tweak the description of delegation of cgroup.subtree_control
+        cgroup.events transitions generate POLLERR as well as POLLPRI
 
-ip.7
-    Ricardo Biehl Pasquali
-        INADDR_* values cannot be assigned directly to 's_addr'
+mount_namespaces.7
     Michael Kerrisk
-        s/INADDR_ANY/INADDR_LOOPBACK/ in discussion of htonl()
-            INADDR_LOOPBACK is a better example, since it is not
-            byte-order neutral.
+        Note another case where shared "peer groups" are formed
 
 namespaces.7
+    Michael Kerrisk  [Konstantin Khlebnikov]
+        Mention that device ID should also be checked when comparing NS symlinks
+            When comparing two namespaces symlinks to see if they refer to
+            the same namespace, both the inode number and the device ID
+            should be compared. This point was already made clear in
+            ioctl_ns(2), but was missing from this page.
+    Michael Kerrisk
+        Note an idiosyncrasy of /proc/[pid]/ns/pid_for_children
+            /proc/[pid]/ns/pid_for_children has a value only after first
+            child is created in PID namespace. Verified by experiment.
+
 network_namespaces.7
     Michael Kerrisk
-        Move content from namespaces(7) to network_namespaces(7)
-
-pid_namespaces.7
+        Network namespaces isolate the UNIX domain abstract socket namespace
     Michael Kerrisk
-        SEE ALSO: add mount_namespaces(7)
+        Add cross reference to unix(7)
+            For further information on UNIX domain abstract sockets.
 
-sched.7
-    Michael Kerrisk  [Andrea Parri]
-        Correctly describe effect of priority changes for RT threads
-            The placement of a thread in the run queue for its new
-            priority depends on the direction of movement in priority.
-            (This appears to contradict POSIX, except in the case of
-            pthread_setschedprio().)
+posixoptions.7
+    Carlos O'Donell
+        Expand XSI Options groups
+            We define in detail the X/Open System Interfaces i.e. _XOPEN_UNIX
+            and all of the X/Open System Interfaces (XSI) Options Groups.
 
-user_namespaces.7
+            The XSI options groups include encryption, realtime, advanced
+            realtime, realtime threads, advanced realtime threads, tracing,
+            streams, and legacy interfaces.
     Michael Kerrisk
-        Mention NS_GET_OWNER_UID ioctl() operation
+        Use a more consistent, less cluttered layout for option lists
+    Michael Kerrisk
+        Make function lists more consistent and less cluttered
+            Use more consistent layout for lists of functions, and
+            remove punctuation from the lists to make them less cluttered.
+
+socket.7
+    Michael Kerrisk  [Tomi Salminen]
+        Fix error in SO_INCOMING_CPU code snippet
+            The last argument is passed by value, not reference.
+
+time.7
+    Michael Kerrisk  [Enrique Garcia]
+        Mention clock_gettime()/clock_settime() rather than [gs]ettimeofday()
+            gettimeofday() is declared obsolete by POSIX. Mention instead
+            the modern APIs for working with the realtime clock.
+
+            See https://bugzilla.kernel.org/show_bug.cgi?id=199049
+
+unix.7
+    Michael Kerrisk  [Rusty Russell]
+        ERRORS: add EBADF for sending closed file descriptor with SCM_RIGHTS
+
+vdso.7
+    Michael Kerrisk
+        VDSO symbols (system calls) are not visible to seccomp(2) filters
+
+xattr.7
+    Michael Kerrisk
+        SEE ALSO: add selinux(8)
+
+ld.so.8
+    Mike Frysinger
+        Make lack of separator escaping explicit
+            Make it clear that the delimiters in LD_PRELOAD, LD_LIBRARY_PATH,
+            and LD_AUDIT cannot be escaped so people don't try various methods
+            (such as \:) to workaround it.
+    Michael Kerrisk
+        Remove unneeded mention of PATH in discussion of LD_LIBRARY_PATH
+            This brief sentence doesn't add value to the text.
