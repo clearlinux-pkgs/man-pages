@@ -4,7 +4,7 @@
 #
 Name     : man-pages
 Version  : 4.16
-Release  : 42
+Release  : 43
 URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.16.tar.xz
 Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-4.16.tar.xz
 Summary  : No detailed summary available
