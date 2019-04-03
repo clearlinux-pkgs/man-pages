@@ -4,7 +4,7 @@
 #
 Name     : man-pages
 Version  : 5.00
-Release  : 44
+Release  : 45
 URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-5.00.tar.xz
 Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-5.00.tar.xz
 Summary  : No detailed summary available
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : Distributable
 Requires: man-pages-man = %{version}-%{release}
 Requires: man-db
+Requires: man-pages-dev
 BuildRequires : groff
 BuildRequires : man-db
 BuildRequires : util-linux
@@ -48,8 +49,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1551911305
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export SOURCE_DATE_EPOCH=1554306491
 make  %{?_smp_mflags}
 
 
@@ -61,7 +61,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make check-groff-warnings
 
 %install
-export SOURCE_DATE_EPOCH=1551911305
+export SOURCE_DATE_EPOCH=1554306491
 rm -rf %{buildroot}
 %make_install
 
