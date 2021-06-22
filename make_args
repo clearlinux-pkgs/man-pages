@@ -1,0 +1,1 @@
+-f does-not-exist.mk || :
