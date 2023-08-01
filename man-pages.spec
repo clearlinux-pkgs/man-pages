@@ -4,10 +4,10 @@
 # Using build pattern: make
 #
 Name     : man-pages
-Version  : 6.04
-Release  : 63
-URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.04.tar.xz
-Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.04.tar.xz
+Version  : 6.05
+Release  : 64
+URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.05.tar.xz
+Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.05.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause BSD-4-Clause-UC Distributable GPL-1.0 GPL-2.0 Linux-man-pages-copyleft MIT
@@ -26,7 +26,8 @@ BuildRequires : util-linux
 Name
 Linux man-pages - manual pages for GNU/Linux
 Synopsis
-This package contains GNU/Linux manual pages for sections 1 through 8.
+This package contains GNU/Linux manual pages for sections 1
+through 8.
 
 %package dev
 Summary: dev components for the man-pages package.
@@ -55,28 +56,39 @@ man components for the man-pages package.
 
 
 %prep
-%setup -q -n man-pages-6.04
-cd %{_builddir}/man-pages-6.04
+%setup -q -n man-pages-6.05
+cd %{_builddir}/man-pages-6.05
+pushd ..
+cp -a man-pages-6.05 buildavx2
+popd
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1680549207
+export SOURCE_DATE_EPOCH=1690899635
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
-export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
-export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz "
+export CFLAGS="$CFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FCFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export FFLAGS="$FFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
+export CXXFLAGS="$CXXFLAGS -O3 -fdebug-types-section -femit-struct-debug-baseonly -ffat-lto-objects -flto=auto -g1 -gno-column-info -gno-variable-location-views -gz=zstd "
 make  %{?_smp_mflags}  -f does-not-exist.mk || :
 
+pushd ../buildavx2
+export CFLAGS="$CFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export CXXFLAGS="$CXXFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FFLAGS="$FFLAGS -m64 -march=x86-64-v3 -Wl,-z,x86-64-v3"
+export FCFLAGS="$FCFLAGS -m64 -march=x86-64-v3"
+export LDFLAGS="$LDFLAGS -m64 -march=x86-64-v3"
+make  %{?_smp_mflags}  -f does-not-exist.mk || :
+popd
 
 %install
-export SOURCE_DATE_EPOCH=1680549207
+export SOURCE_DATE_EPOCH=1690899635
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/man-pages
 cp %{_builddir}/man-pages-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/man-pages/07c1ab270255cf247438e2358ff0c18835b6a6ce || :
@@ -87,6 +99,9 @@ cp %{_builddir}/man-pages-%{version}/LICENSES/GPL-2.0-only.txt %{buildroot}/usr/
 cp %{_builddir}/man-pages-%{version}/LICENSES/GPL-2.0-or-later.txt %{buildroot}/usr/share/package-licenses/man-pages/3cb34cfc72e87654683f2894299adf912d14b284 || :
 cp %{_builddir}/man-pages-%{version}/LICENSES/Linux-man-pages-copyleft.txt %{buildroot}/usr/share/package-licenses/man-pages/fe34aa4b5377f98fe20e9493c2055194440d8faa || :
 cp %{_builddir}/man-pages-%{version}/LICENSES/MIT.txt %{buildroot}/usr/share/package-licenses/man-pages/adadb67a9875aeeac285309f1eab6e47d9ee08a7 || :
+pushd ../buildavx2/
+%make_install_v3 prefix=/usr
+popd
 %make_install prefix=/usr
 ## Remove excluded files
 rm -f %{buildroot}*/usr/share/man/man2/fgetxattr.2
@@ -110,6 +125,7 @@ rm -f %{buildroot}*/usr/share/man/man7/persistent-keyring.7
 rm -f %{buildroot}*/usr/share/man/man7/session-keyring.7
 rm -f %{buildroot}*/usr/share/man/man7/user-session-keyring.7
 rm -f %{buildroot}*/usr/share/man/man7/keyrings.7
+/usr/bin/elf-move.py avx2 %{buildroot}-v3 %{buildroot} %{buildroot}/usr/share/clear/filemap/filemap-%{name}
 
 %files
 %defattr(-,root,root,-)
@@ -287,6 +303,7 @@ rm -f %{buildroot}*/usr/share/man/man7/keyrings.7
 /usr/share/man/man2/ioctl_getfsmap.2
 /usr/share/man/man2/ioctl_iflags.2
 /usr/share/man/man2/ioctl_ns.2
+/usr/share/man/man2/ioctl_pipe.2
 /usr/share/man/man2/ioctl_tty.2
 /usr/share/man/man2/ioctl_userfaultfd.2
 /usr/share/man/man2/ioperm.2
@@ -2454,6 +2471,7 @@ rm -f %{buildroot}*/usr/share/man/man7/keyrings.7
 /usr/share/man/man5/core.5
 /usr/share/man/man5/dir_colors.5
 /usr/share/man/man5/elf.5
+/usr/share/man/man5/erofs.5
 /usr/share/man/man5/filesystems.5
 /usr/share/man/man5/fs.5
 /usr/share/man/man5/ftpusers.5
