@@ -4,10 +4,10 @@
 # Using build pattern: make
 #
 Name     : man-pages
-Version  : 6.05
-Release  : 64
-URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.05.tar.xz
-Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.05.tar.xz
+Version  : 6.05.01
+Release  : 65
+URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.05.01.tar.xz
+Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.05.01.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause BSD-4-Clause-UC Distributable GPL-1.0 GPL-2.0 Linux-man-pages-copyleft MIT
@@ -56,10 +56,10 @@ man components for the man-pages package.
 
 
 %prep
-%setup -q -n man-pages-6.05
-cd %{_builddir}/man-pages-6.05
+%setup -q -n man-pages-6.05.01
+cd %{_builddir}/man-pages-6.05.01
 pushd ..
-cp -a man-pages-6.05 buildavx2
+cp -a man-pages-6.05.01 buildavx2
 popd
 
 %build
@@ -67,7 +67,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1690899635
+export SOURCE_DATE_EPOCH=1691076051
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -88,7 +88,7 @@ make  %{?_smp_mflags}  -f does-not-exist.mk || :
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1690899635
+export SOURCE_DATE_EPOCH=1691076051
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/man-pages
 cp %{_builddir}/man-pages-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/man-pages/07c1ab270255cf247438e2358ff0c18835b6a6ce || :
