@@ -6,10 +6,10 @@
 # autospec commit: fbcebd0
 #
 Name     : man-pages
-Version  : 6.9
-Release  : 70
-URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.9.tar.gz
-Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.9.tar.gz
+Version  : 6.9.1
+Release  : 71
+URL      : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.9.1.tar.gz
+Source0  : https://www.kernel.org/pub/linux/docs/man-pages/man-pages-6.9.1.tar.gz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : BSD-2-Clause BSD-3-Clause BSD-4-Clause-UC Distributable GPL-1.0 GPL-2.0 GPL-3.0 LGPL-3.0 Linux-man-pages-copyleft MIT
@@ -58,10 +58,10 @@ man components for the man-pages package.
 
 
 %prep
-%setup -q -n man-pages-6.9
-cd %{_builddir}/man-pages-6.9
+%setup -q -n man-pages-6.9.1
+cd %{_builddir}/man-pages-6.9.1
 pushd ..
-cp -a man-pages-6.9 buildavx2
+cp -a man-pages-6.9.1 buildavx2
 popd
 
 %build
@@ -69,7 +69,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1718601715
+export SOURCE_DATE_EPOCH=1718727120
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -112,7 +112,7 @@ FFLAGS="$CLEAR_INTERMEDIATE_FFLAGS"
 FCFLAGS="$CLEAR_INTERMEDIATE_FCFLAGS"
 ASFLAGS="$CLEAR_INTERMEDIATE_ASFLAGS"
 LDFLAGS="$CLEAR_INTERMEDIATE_LDFLAGS"
-export SOURCE_DATE_EPOCH=1718601715
+export SOURCE_DATE_EPOCH=1718727120
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/man-pages
 cp %{_builddir}/man-pages-%{version}/LICENSES/BSD-2-Clause.txt %{buildroot}/usr/share/package-licenses/man-pages/48425c0d29eec28e01be25cae932f6dce8e4e278 || :
@@ -2634,6 +2634,8 @@ rm -f %{buildroot}*/usr/share/man/man7/keyrings.7
 /usr/share/man/man3type/regex_t.3type
 /usr/share/man/man3type/regmatch_t.3type
 /usr/share/man/man3type/regoff_t.3type
+/usr/share/man/man3type/rlim_t.3type
+/usr/share/man/man3type/rlimit.3type
 /usr/share/man/man3type/sa_family_t.3type
 /usr/share/man/man3type/sigevent.3type
 /usr/share/man/man3type/siginfo_t.3type
